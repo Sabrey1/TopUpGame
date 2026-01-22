@@ -13,10 +13,14 @@ import 'primeicons/primeicons.css'
 
 // import component
 import Header from '@/layouts/Header.vue'
+import Footer from '@/layouts/Footer.vue'
 import Chip from 'primevue/chip';
 import Card from 'primevue/card';
 import Toolbar from 'primevue/toolbar';
 import Avatar from 'primevue/avatar';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+// import Dialog from 'primevue/dialog';
 
 
 const app = createApp(App)
@@ -28,10 +32,14 @@ app.use(PrimeVue, {
     }
 });
 app.component('Header', Header);
+app.component('Footer', Footer);
 app.component('Chip', Chip);
 app.component('Card', Card);
 app.component('Toolbar', Toolbar);
 app.component('Avatar', Avatar);
+app.component('InputText', InputText);
+app.component('Button', Button);
+// app.component('Dialog', Dialog);
 
 
 app.use(i18n);
