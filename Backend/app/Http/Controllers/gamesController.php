@@ -12,12 +12,10 @@ class gamesController extends Controller
      */
     public function index()
     {
-        //
+        $game = Games::all();
+        return response()->json($game);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //

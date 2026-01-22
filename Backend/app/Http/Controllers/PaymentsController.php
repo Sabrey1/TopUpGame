@@ -12,7 +12,8 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payments::all();
+        return response()->json($payments);
     }
 
     /**

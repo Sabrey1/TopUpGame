@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class TopUpPackage extends Model
 {
-    //
+    protected $table = 'topupPackages';
 }

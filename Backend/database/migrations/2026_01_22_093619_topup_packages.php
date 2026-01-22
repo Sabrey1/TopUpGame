@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('topup_packages', function (Blueprint $table) {
+        Schema::create('topupPackages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->integer('amount')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('topup_packages');
+        Schema::dropIfExists('topupPackages');
     }
 };

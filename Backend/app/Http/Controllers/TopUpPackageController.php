@@ -12,7 +12,8 @@ class TopUpPackageController extends Controller
      */
     public function index()
     {
-        //
+        $topUpPackages = TopUpPackage::all(); // Use the correct model name
+        return response()->json($topUpPackages);
     }
 
     /**
