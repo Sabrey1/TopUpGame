@@ -16,8 +16,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import Toolbar from 'primevue/toolbar';
-import Avatar from 'primevue/avatar';
+
 
 const items = ref([
     {

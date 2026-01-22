@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-yellow-300 mt-5">
+    <div class="bg-yellow-300 mt-5" style="height: 250px;">
         <div class="fix-container">
             <div class="grid">
                 <div class="col-2">

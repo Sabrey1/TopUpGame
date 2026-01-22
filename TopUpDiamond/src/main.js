@@ -11,6 +11,14 @@ import '/node_modules/primeflex/primeflex.css'
 import i18n from './i18n'
 import 'primeicons/primeicons.css'
 
+// import component
+import Header from '@/layouts/Header.vue'
+import Chip from 'primevue/chip';
+import Card from 'primevue/card';
+import Toolbar from 'primevue/toolbar';
+import Avatar from 'primevue/avatar';
+
+
 const app = createApp(App)
 app.use(routes)
 
@@ -19,6 +27,13 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
+app.component('Header', Header);
+app.component('Chip', Chip);
+app.component('Card', Card);
+app.component('Toolbar', Toolbar);
+app.component('Avatar', Avatar);
+
+
 app.use(i18n);
 window.t = (key) => i18n.global.t(key)
 
