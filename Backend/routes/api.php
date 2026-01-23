@@ -6,6 +6,7 @@ use App\Http\Controllers\GamesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TopUpPackageController;
+use App\Http\Controllers\PaymentTypeController;
 
 
 Route::get('/user', function (Request $request) {
@@ -24,3 +25,7 @@ Route::get('/order',[OrdersController::class,'index'])->name('order.index');
 
 // payment
 Route::get('/payment',[PaymentsController::class,'index'])->name('payment.index');
+
+
+//payment_type
+Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TopUpPackage extends Model
+class PaymentType extends Model
 {
-    protected $table = 'topup_packages';
+    protected $table = 'payment_type';
 }

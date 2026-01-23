@@ -9,6 +9,7 @@ use App\Models\Games;
 use App\Models\TopUpPackage;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\PaymentType;
 
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GamesSeeder::class,
             TopupPackagesSeeder::class,
+            PaymentTypeSeeder::class,
             OrdersSeeder::class,
             PaymentsSeeder::class,
         ]);

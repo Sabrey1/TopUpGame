@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('order_code');
             $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
-            $table->foreignId('package_id')->constrained('topupPackages')->onDelete('cascade');
+            $table->foreignId('package_id')->constrained('topup_packages')->onDelete('cascade');  // ✅ match table name
             $table->integer('player_id');
             $table->integer('server_id');
             $table->decimal('price');
-            $table->string('payment_method');
+            $table->foreignId('payment_type_id')->constrained('payment_type')->onDelete('cascade');
             $table->string('status');
             $table->timestamps();
         });

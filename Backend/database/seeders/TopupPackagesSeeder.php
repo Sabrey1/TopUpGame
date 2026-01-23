@@ -10,7 +10,7 @@ class TopupPackagesSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('topupPackages')->insert([
+        DB::table('topup_packages')->insert([
             [
                 'game_id' => 1,
                 'name' => 'ML Diamond Pack 86',

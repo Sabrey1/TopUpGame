@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('topupPackages', function (Blueprint $table) {
+        Schema::create('topup_packages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->string('name')->nullable();

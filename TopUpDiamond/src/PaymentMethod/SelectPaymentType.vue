@@ -33,12 +33,12 @@
 import { ref } from 'vue';
 
 const Payments = ref([
-    {id:1, name:"Pi Pal", price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/PI_PAY_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Bakong",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/BAKONG_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Wing",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/WING_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Smart",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/Smart_Axiata_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Cellcard",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/CELLCARD_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Metfone",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/METFONE_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Paygo",price:"US$0.97", image:'https://cdn1.codashop.com/S/content/common/images/mno/PAYGO_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Pi Pal",  image:'https://cdn1.codashop.com/S/content/common/images/mno/PI_PAY_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Bakong", image:'https://cdn1.codashop.com/S/content/common/images/mno/BAKONG_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Wing", image:'https://cdn1.codashop.com/S/content/common/images/mno/WING_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Smart", image:'https://cdn1.codashop.com/S/content/common/images/mno/Smart_Axiata_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Cellcard", image:'https://cdn1.codashop.com/S/content/common/images/mno/CELLCARD_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Metfone", image:'https://cdn1.codashop.com/S/content/common/images/mno/METFONE_KH_CHNL_LOGO.webp'},
+    {id:1, name:"Paygo", image:'https://cdn1.codashop.com/S/content/common/images/mno/PAYGO_KH_CHNL_LOGO.webp'},
 ])
 </script>
