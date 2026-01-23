@@ -23,8 +23,14 @@ Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('top
 // order
 Route::get('/order',[OrdersController::class,'index'])->name('order.index');
 
-// payment
+// payment-list
 Route::get('/payment',[PaymentsController::class,'index'])->name('payment.index');
+
+//payment
+Route::post('/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
+Route::get('/verify', [PaymentController::class, 'verifyForm'])->name('verify.form');
+Route::post('/verify', [PaymentController::class, 'verifyTransaction'])->name('verify.transaction');
+Route::get('/payments/result', [PaymentController::class, 'verifyTransaction'])->name('payments.result');
 
 
 //payment_type
