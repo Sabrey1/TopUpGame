@@ -23,13 +23,12 @@ Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('top
 
 // order
 Route::get('/order',[OrdersController::class,'index'])->name('order.index');
-
-Route::prefix('payments')->group(function () {
-    Route::get('/', [PaymentsController::class, 'index'])->name('payments.index');
+ 
+    Route::get('/payments', [PaymentsController::class, 'index'])->name('payments.index');
     Route::get('/checkout/{id}', [PaymentsController::class, 'checkout'])->name('payments.checkout');
     Route::post('/verify', [PaymentsController::class, 'verifyTransaction'])->name('payments.verify');
     Route::post('/', [PaymentsController::class, 'storePayment'])->name('payments.store');
-});
+ 
 
 //payment_type
 Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');

@@ -12,47 +12,45 @@ use KHQR\Models\IndividualInfo;
 
 class PaymentsController extends Controller
 {
-    /**
-     * List all payments
-     */
+    // List all payments
     public function index()
     {
         $payments = Payments::all();
         return response()->json($payments);
     }
 
-   
-
+    // Checkout — generate Bakong QR
     public function checkout($id)
-{
-    try {
-        $topup = TopUpPackage::findOrFail($id);
+    {
+        try {
+            $topup = TopUpPackage::findOrFail($id);
 
-        $merchant = new IndividualInfo(
-            bakongAccountID: 'sabrey_lim@bkrt',
-            merchantName: 'sabrey lim',
-            merchantCity: 'Siem Reap',
-            currency: KHQRData::CURRENCY_KHR,
-            amount: $topup->price
-        );
+            // Ensure price is integer
+            $amountInKHR = (int) $topup->price;
 
-        $qrResponse = BakongKHQR::generateIndividual($merchant);
+            $merchant = new IndividualInfo(
+                bakongAccountID: 'sabrey_lim@bkrt',
+                merchantName: 'Sabrey Lim',
+                merchantCity: 'Siem Reap',
+                currency: KHQRData::CURRENCY_KHR,
+                amount: $amountInKHR
+            );
 
-        return response()->json([
-            'TopUpPackage' => $topup,
-            'qr' => $qrResponse->data['qr'] ?? null,
-            'md5' => $qrResponse->data['md5'] ?? null,
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => $e->getMessage()
-        ], 500);
+            $qrResponse = BakongKHQR::generateIndividual($merchant);
+
+            return response()->json([
+                'TopUpPackage' => $topup,
+                'qr' => $qrResponse->data['qr'] ?? null,
+                'md5' => $qrResponse->data['md5'] ?? null,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
-}
 
-    /**
-     * Verify a transaction by MD5
-     */
+    // Verify a transaction by MD5
     public function verifyTransaction(Request $request)
     {
         $request->validate([
@@ -72,15 +70,13 @@ class PaymentsController extends Controller
         }
     }
 
-    /**
-     * Save a payment record
-     */
+    // Save a payment record
     public function storePayment(Request $request)
     {
         $request->validate([
             'topup_package_id' => 'required|exists:topup_packages,id',
             'md5' => 'required|string',
-            'amount' => 'required|numeric',
+            'amount' => 'required|integer',
         ]);
 
         $payment = Payments::create([
