@@ -6,7 +6,10 @@
                 <InputText type="text" fluid placeholder="Enter User ID" v-model="value" />
                 <InputText type="text" fluid placeholder="Zone ID" v-model="value" />
             </div>
-             <p class="text-gray-400 text-sm m-0">To find your User ID, click on your avatar in the top left corner of the main game screen. Then go to the "Basic Info" tab. Your user ID is shown below your nickname. Please input the complete user ID here, e.g. 12345678(1234).</p>
+            <div>
+                <Button label="Check ID" class="mt-3"></Button>
+            </div>
+             <p class="text-gray-400 text-sm mt-1">To find your User ID, click on your avatar in the top left corner of the main game screen. Then go to the "Basic Info" tab. Your user ID is shown below your nickname. Please input the complete user ID here, e.g. 12345678(1234).</p>
         </template>
     </Card>
     <!--  -->
@@ -100,10 +103,6 @@ import SelectPaymentType from '@/PaymentMethod/SelectPaymentType.vue'
 
 const visible = ref(false);
 const value = ref(null);
-
-
-
-
 
 const orderDetails = ref(
     {id:1,nickname:"Cobra",paymentMethod:"Paypal",price:"US$0.97",tax:"US$0.97"},

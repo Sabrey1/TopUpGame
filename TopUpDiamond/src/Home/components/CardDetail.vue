@@ -2,6 +2,9 @@
   <Header />
   <div class="fix-container" style="padding-top: 60px;">
     <div class="mt-5">
+      <div class="mb-3">
+        <Button @click="goback" label="Back" icon="pi pi-arrow-left"  class="border-round" severity="success"></Button>
+      </div>
       <div class="grid">
         <div class="col-4">
           <div class="flex gap-4">
@@ -52,6 +55,10 @@ const gameId = Number(route.params.id)
 
 const game = computed(() => games.value.find(g => g.id === gameId) || {})
 
+
+function goback(){
+  window.history.back();
+}
 </script>
 
 <style scoped>

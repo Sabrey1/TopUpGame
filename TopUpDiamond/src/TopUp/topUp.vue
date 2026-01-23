@@ -6,7 +6,8 @@
             <p class="m-0">Our best sellers for you</p>
                 <div class="grid">
                     <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
-                        <Card class="mt-3 border-1  border-gray-400 w-full">
+                        <Card class="mt-3 border-1 border-gray-400 w-full selectable"
+                            :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
                                 <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
                                 <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
@@ -21,10 +22,10 @@
                             <template #content>
                                 <div class="">
                                     <p class="m-0 title text-right">From</p>
-                                    <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
+                                    <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
                                         <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
-                                        <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
+                                        <p class="m-0"><s>${{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
                             </template>
@@ -55,7 +56,8 @@
                 <p>Diamonds</p>
                 <div class="grid">
                     <div v-for="pkg in gamePackages" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
-                        <Card class="mt-3 border-1  border-gray-400 w-full">
+                        <Card class="mt-3 border-1 border-gray-400 w-full selectable"
+                            :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
                                 <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
                                 <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
@@ -70,10 +72,10 @@
                             <template #content>
                                 <div class="">
                                     <p class="m-0 title text-right">From</p>
-                                    <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
+                                    <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
                                         <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
-                                        <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
+                                        <p class="m-0"><s>${{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
                             </template>
@@ -145,6 +147,12 @@ const gamePackages = ref([]);
 const BestSellers = ref([]);
 const gameName = ref('');
 
+const selectedPackageId = ref(null)
+
+const selectPackage = (pkg) => {
+  selectedPackageId.value = pkg.id
+}
+
 async function getPackagesByGame(id) {
   try {
     const res = await axios.get('http://127.0.0.1:8000/api/topupPackage');
@@ -169,6 +177,7 @@ onMounted(() => getPackagesByGame(gameId.value));
 
 watch(() => route.params.id, (newId) => {
   gameId.value = newId;
+  selectedPackageId.value = null;
   getPackagesByGame(newId);
 });
 
@@ -177,3 +186,22 @@ const Weeklypass = ref([
 ])
 
 </script>
+
+<style scoped>
+.title{
+    font-size: 13px;
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.selectable:hover {
+  border-color: #22c55e;
+}
+
+.selected {
+  border: 2px solid #22c55e !important;
+  background-color: #f0fdf4;
+}
+</style>
