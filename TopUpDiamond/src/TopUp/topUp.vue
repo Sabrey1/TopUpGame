@@ -1,26 +1,27 @@
 <template>
     <div>
-        <Card class="mt-3">
+        <Card  class="mt-3 ">
         <template #title>Select Recharge</template>
         <template #content>
             <p class="m-0">Our best sellers for you</p>
                 <div class="grid">
                     <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
-                        <Card class="mt-3 border-1 border-gray-400 w-full selectable"
+                        <Card class="mt-3 border-1 border-gray-400 w-full selectable no-padding-card"
                             :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
-                                <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
-                                <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
-                                <div class="flex justify-content-center align-items-center">
-                                    <img
-                                        :src="pkg.image"
-                                        class="object-cover block w-4rem"
-                                        alt=""
-                                    />
+                                <div class="p-2">
+                                    <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
+                                    <div class="flex justify-content-center align-items-center">
+                                        <img
+                                            :src="pkg.image"
+                                            class="object-cover block w-4rem"
+                                            alt=""
+                                        />
+                                    </div>
                                 </div>
                             </template>
                             <template #content>
-                                <div class="">
+                                <div class="bg-gray-100 p-2 border-round-bottom-xl">
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
@@ -56,21 +57,23 @@
                 <p>Diamonds</p>
                 <div class="grid">
                     <div v-for="pkg in gamePackages" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
-                        <Card class="mt-3 border-1 border-gray-400 w-full selectable"
+                        <Card class="mt-3 border-1 border-gray-400 w-full selectable no-padding-card"
                             :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
-                                <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
-                                <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
-                                <div class="flex justify-content-center align-items-center">
-                                    <img
-                                        :src="pkg.image"
-                                        class="object-cover block w-4rem"
-                                        alt=""
-                                    />
+                                <div class="p-2">
+                                    <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
+                                    <div class="flex justify-content-center align-items-center">
+                                        <img
+                                            :src="pkg.image"
+                                            class="object-cover block w-4rem"
+                                            alt=""
+                                        />
+                                    </div>
                                 </div>
+                                
                             </template>
                             <template #content>
-                                <div class="">
+                                <div class="bg-gray-100 p-2 border-round-bottom-xl">
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">

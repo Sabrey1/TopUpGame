@@ -23,19 +23,15 @@ Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('top
 // order
 Route::get('/order',[OrdersController::class,'index'])->name('order.index');
 
-// payment-list
-Route::get('/payment',[PaymentsController::class,'index'])->name('payment.index');
-
-//payment
-Route::post('/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
-Route::get('/verify', [PaymentController::class, 'verifyForm'])->name('verify.form');
-Route::post('/verify', [PaymentController::class, 'verifyTransaction'])->name('verify.transaction');
-Route::get('/payments/result', [PaymentController::class, 'verifyTransaction'])->name('payments.result');
-
+Route::prefix('payments')->group(function () {
+    Route::get('/', [PaymentsController::class, 'index'])->name('payments.index');
+    Route::get('/checkout/{id}', [PaymentsController::class, 'checkout'])->name('payments.checkout');
+    Route::post('/verify', [PaymentsController::class, 'verifyTransaction'])->name('payments.verify');
+    Route::post('/', [PaymentsController::class, 'storePayment'])->name('payments.store');
+});
 
 //payment_type
 Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');
-
 
 //cursel
 Route::get('/panel_coursel',[CourselController::class,'index'])->name('panel_coursel.index');

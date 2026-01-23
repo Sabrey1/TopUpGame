@@ -26,6 +26,11 @@ a{
   text-decoration: none;
 }
 
+.no-padding-card .p-card-body {
+  padding: 0 !important;
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
