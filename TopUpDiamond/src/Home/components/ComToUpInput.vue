@@ -1,6 +1,6 @@
 <template>
     <Card>
-        <template #title>Enter User ID</template>
+        <template #title>{{t("Enter User ID")}}</template>
         <template #content>
             <div class="flex gap-3">
                 <InputText type="text" fluid placeholder="Enter User ID" v-model="value" />
@@ -30,6 +30,7 @@ import Payment from '@/Payment/Payment.vue'
 
 const value = ref(null);
 
+const t = window.t
 </script>
 
 <style scoped>

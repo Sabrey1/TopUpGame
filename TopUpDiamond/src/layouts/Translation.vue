@@ -1,18 +1,17 @@
-<script setup>
-import { useI18n } from 'vue-i18n'
-import { setItem } from '@/services/storage-service'
-
-const { locale } = useI18n()
-
-function changeLang(lang) {
-  locale.value = lang
-  setItem("lang", lang)
-}
-</script>
-
 <template>
-  <select @change="changeLang($event.target.value)">
+  <select v-model="currentLang" @change="changeLang(currentLang)">
     <option value="en">English</option>
     <option value="kh">Khmer</option>
   </select>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { getItem } from '@/services/storage-service';
+
+const t = window.t;
+const changeLang = window.changeLang;
+
+// ✅ load saved language
+const currentLang = ref(getItem('lang') || 'en');
+</script>
