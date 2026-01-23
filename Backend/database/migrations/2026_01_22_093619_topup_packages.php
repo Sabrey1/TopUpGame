@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('amount')->nullable();
             $table->string('Unit')->nullable();
+            $table->string('discount')->nullable();
             $table->decimal('price')->nullable();
+            $table->decimal('fullprice')->nullable();
             $table->boolean('best_seller')->nullable();
             $table->string('currency')->nullable();
             $table->timestamps();

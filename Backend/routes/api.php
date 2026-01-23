@@ -7,7 +7,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TopUpPackageController;
 use App\Http\Controllers\PaymentTypeController;
-
+use App\Http\Controllers\CourselController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,3 +29,7 @@ Route::get('/payment',[PaymentsController::class,'index'])->name('payment.index'
 
 //payment_type
 Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');
+
+
+//cursel
+Route::get('/panel_coursel',[CourselController::class,'index'])->name('panel_coursel.index');

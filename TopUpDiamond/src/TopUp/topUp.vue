@@ -8,8 +8,8 @@
                     <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
                         <Card class="mt-3 border-1  border-gray-400 w-full">
                             <template #title>
-                                <p class="text-center text-sm m-0">{{ pkg.name }}</p>
-                                <p class="text-center m-0 title">{{ pkg.daimond }}</p>
+                                <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
+                                <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
                                 <div class="flex justify-content-center align-items-center">
                                     <img
                                         :src="pkg.image"
@@ -23,7 +23,7 @@
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right  title m-0" >{{pkg.discount}}</Chip>
+                                        <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
                                         <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right  title m-0" >{{pkg.discount}}</Chip>
+                                        <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
                                         <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>

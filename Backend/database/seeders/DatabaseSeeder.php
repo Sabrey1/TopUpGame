@@ -10,6 +10,7 @@ use App\Models\TopUpPackage;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\PaymentType;
+use App\Models\PanelCoursel;
 
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             PaymentTypeSeeder::class,
             OrdersSeeder::class,
             PaymentsSeeder::class,
+            PanelCourselSeeder::class
         ]);
 
         User::factory()->create([
