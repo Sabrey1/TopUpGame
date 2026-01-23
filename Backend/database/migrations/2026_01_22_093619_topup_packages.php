@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('amount')->nullable();
             $table->string('Unit')->nullable();
             $table->string('discount')->nullable();
-            $table->decimal('price')->nullable();
-            $table->decimal('fullprice')->nullable();
+            $table->decimal('price', 12, 2)->nullable();
+            $table->decimal('fullprice', 12, 2)->nullable();
             $table->boolean('best_seller')->nullable();
             $table->string('currency')->nullable();
             $table->timestamps();

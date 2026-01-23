@@ -3,7 +3,7 @@
   <div>
     <Card class="mt-5">
       <template #content>
-        <!-- Summary -->
+      
         <div class="flex align-items-center" style="margin-bottom:-15px;">
           <p class="m-0">
             {{ selectedPackage?.amount }} {{ selectedPackage?.Unit }}
@@ -28,7 +28,7 @@
               @click="visible = true"
             />
 
-            <!-- Dialog -->
+           
             <Dialog v-model:visible="visible" modal header="Order Details" :style="{ width: '25rem' }">
 
               <div class="flex bg-gray-200 p-2 border-round-sm align-items-center gap-4 mb-4">
@@ -90,8 +90,7 @@ import { ref, computed } from 'vue'
 import Dialog from 'primevue/dialog'
 
 const visible = ref(false)
-
-/* ✅ PROPS FROM PARENT (RENAMED!) */
+ 
 const props = defineProps({
   selectedPackage: Object,
   selectedPayment: Object

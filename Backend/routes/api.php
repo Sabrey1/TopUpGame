@@ -9,6 +9,7 @@ use App\Http\Controllers\TopUpPackageController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\CourselController;
 
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

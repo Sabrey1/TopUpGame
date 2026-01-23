@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payments;
@@ -21,18 +21,17 @@ class PaymentsController extends Controller
         return response()->json($payments);
     }
 
-    /**
-     * Generate checkout QR code for a TopUpPackage
-     */
+   
+
     public function checkout($id)
-    {
+{
+    try {
         $topup = TopUpPackage::findOrFail($id);
 
-        // Merchant info
         $merchant = new IndividualInfo(
-            bakongAccountID: 'vannak_dim@cadi', // Replace with your Bakong account
-            merchantName: 'VANNAK DIM',
-            merchantCity: 'Phnom Penh',
+            bakongAccountID: 'sabrey_lim@bkrt',
+            merchantName: 'sabrey lim',
+            merchantCity: 'Siem Reap',
             currency: KHQRData::CURRENCY_KHR,
             amount: $topup->price
         );
@@ -40,11 +39,16 @@ class PaymentsController extends Controller
         $qrResponse = BakongKHQR::generateIndividual($merchant);
 
         return response()->json([
-            'topup_package' => $topup,
+            'TopUpPackage' => $topup,
             'qr' => $qrResponse->data['qr'] ?? null,
             'md5' => $qrResponse->data['md5'] ?? null,
         ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Verify a transaction by MD5
