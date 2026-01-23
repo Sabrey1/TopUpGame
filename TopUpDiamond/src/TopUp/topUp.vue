@@ -5,14 +5,14 @@
         <template #content>
             <p class="m-0">Our best sellers for you</p>
                 <div class="grid">
-                    <div v-for="BestSeller in BestSellers" :key="BestSeller.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
+                    <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
                         <Card class="mt-3 border-1  border-gray-400 w-full">
                             <template #title>
-                                <p class="text-center text-sm m-0">{{ BestSeller.name }}</p>
-                                <p class="text-center m-0 title">{{ BestSeller.daimond }}</p>
+                                <p class="text-center text-sm m-0">{{ pkg.name }}</p>
+                                <p class="text-center m-0 title">{{ pkg.daimond }}</p>
                                 <div class="flex justify-content-center align-items-center">
                                     <img
-                                        :src="BestSeller.image"
+                                        :src="pkg.image"
                                         class="object-cover block w-4rem"
                                         alt=""
                                     />
@@ -21,10 +21,10 @@
                             <template #content>
                                 <div class="">
                                     <p class="m-0 title text-right">From</p>
-                                    <p class="m-0 text-sm text-right">{{ BestSeller.price }}</p>
+                                    <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right  title m-0" >{{BestSeller.discount}}</Chip>
-                                        <p class="m-0"><s>{{ BestSeller.fullprice }}</s></p>
+                                        <Chip class="bg-green-200 text-right  title m-0" >{{pkg.discount}}</Chip>
+                                        <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
                             </template>
@@ -54,14 +54,14 @@
             <div>
                 <p>Diamonds</p>
                 <div class="grid">
-                    <div v-for="Diamond in Diamonds" :key="Diamond.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
+                    <div v-for="pkg in gamePackages" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
                         <Card class="mt-3 border-1  border-gray-400 w-full">
                             <template #title>
-                                <p class="text-center text-sm m-0">{{ Diamond.name }}</p>
-                                <p class="text-center m-0 title">{{ Diamond.daimond }}</p>
+                                <!-- <p class="text-center text-sm m-0">{{ pkg.name }}</p> -->
+                                <p class="text-center m-0 title">{{ pkg.amount }} {{ pkg.Unit }}</p>
                                 <div class="flex justify-content-center align-items-center">
                                     <img
-                                        :src="Diamond.image"
+                                        :src="pkg.image"
                                         class="object-cover block w-4rem"
                                         alt=""
                                     />
@@ -70,10 +70,10 @@
                             <template #content>
                                 <div class="">
                                     <p class="m-0 title text-right">From</p>
-                                    <p class="m-0 text-sm text-right">{{ Diamond.price }}</p>
+                                    <p class="m-0 text-sm text-right">{{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right  title m-0" >{{Diamond.discount}}</Chip>
-                                        <p class="m-0"><s>{{ Diamond.fullprice }}</s></p>
+                                        <Chip class="bg-green-200 text-right  title m-0" >{{pkg.discount}}</Chip>
+                                        <p class="m-0"><s>{{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
                             </template>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <!-- <div>
                 <p>Weekly Diamond Pass</p>
                 <Card>
                     <template #content>
@@ -126,7 +126,7 @@
                         </Card>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
         </template>
     </Card>
@@ -134,31 +134,46 @@
 </template>
 
 <script setup>
-    import {ref} from 'vue'
-    const BestSellers = ref([
-    {id:1, name:"56 Diamonds", daimond:"51 + 5 Bonus", discount:"-22%", price:"US$0.97", fullprice:"US$1.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203562_e4990cee-4020-4a74-8fc2-ae7f68fdabcd.png'},
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-])
+import {ref, onMounted,watch } from 'vue'
+import axios from 'axios'
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const gameId = ref(route.params.id); 
+
+const gamePackages = ref([]);
+const BestSellers = ref([]);
+const gameName = ref('');
+
+async function getPackagesByGame(id) {
+  try {
+    const res = await axios.get('http://127.0.0.1:8000/api/topupPackage');
+    if (res.data) {
+      
+      const packages = res.data.filter(pkg => pkg.game_id == id);
+      BestSellers.value = packages.filter(pkg => pkg.best_seller == 1);
+      gamePackages.value = packages.filter(pkg => pkg.best_seller == 0);
+
+      if (packages.length > 0) {
+        gameName.value = packages[0].name.includes("ML") ? "Mobile Legends" : `Game ${id}`;
+      } else {
+        gameName.value = `Game ${id}`;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching packages:", error);
+  }
+}
+
+onMounted(() => getPackagesByGame(gameId.value));
+
+watch(() => route.params.id, (newId) => {
+  gameId.value = newId;
+  getPackagesByGame(newId);
+});
 
 const Weeklypass = ref([
     {id:1, name:"Weekly Diamond Pass",  discount:"-23%", price:"US$1.93", fullprice:"US$2.49", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_f66aebb8ede7c159b2dfc46c2cd00201_category/1741854799644_dcbce7aa-7d85-4e79-ad45-6aed78fcda56.png'},
 ])
 
-
-const Diamonds = ref([
-    {id:1, name:"56 Diamonds", daimond:"51 + 5 Bonus", discount:"-22%", price:"US$0.97", fullprice:"US$1.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203562_e4990cee-4020-4a74-8fc2-ae7f68fdabcd.png'},
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-    {id:2, name:"456 Diamonds", daimond:"456 + 5 Bonus", price:"US$4.97", discount:"-22%", fullprice:"US$6.25", image:'https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_product/1760335203286_6878d3f6-b882-4a98-8e79-8d631d7fb683.png'}, 
-])
 </script>

@@ -18,7 +18,7 @@
                             <template #content>
                                 <div class=""> 
                                      <p class=" text-sm m-0">{{ Payment.name }}</p>
-                                    <p class="m-0 text-sm">{{ Payment.price }}</p>
+                                    <!-- <p class="m-0 text-sm">{{ Payment.price }}</p> -->
                                 </div>
                             </template>
                         </Card>
@@ -30,15 +30,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
+import axios from 'axios'
 
-const Payments = ref([
-    {id:1, name:"Pi Pal",  image:'https://cdn1.codashop.com/S/content/common/images/mno/PI_PAY_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Bakong", image:'https://cdn1.codashop.com/S/content/common/images/mno/BAKONG_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Wing", image:'https://cdn1.codashop.com/S/content/common/images/mno/WING_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Smart", image:'https://cdn1.codashop.com/S/content/common/images/mno/Smart_Axiata_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Cellcard", image:'https://cdn1.codashop.com/S/content/common/images/mno/CELLCARD_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Metfone", image:'https://cdn1.codashop.com/S/content/common/images/mno/METFONE_KH_CHNL_LOGO.webp'},
-    {id:1, name:"Paygo", image:'https://cdn1.codashop.com/S/content/common/images/mno/PAYGO_KH_CHNL_LOGO.webp'},
-])
+const Payments = ref([])
+
+async function getData(){
+    const res = await axios.get('http://127.0.0.1:8000/api/payment_type')
+    if(res.data){
+        Payments.value = res.data
+    }
+}
+
+onMounted(()=>{
+getData()
+})
+
 </script>
