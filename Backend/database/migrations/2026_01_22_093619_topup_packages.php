@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('topupPackages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
             $table->integer('amount')->nullable();
             $table->decimal('price')->nullable();
             $table->string('currency')->nullable();

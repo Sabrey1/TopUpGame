@@ -29,20 +29,24 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import ComToUpInput from '@/Home/components/ComToUpInput.vue'
+import axios from 'axios'
 
 const route = useRoute()
 
-const games = ref([
-  { id: 1, image: "https://i.pinimg.com/474x/d9/a1/69/d9a169b14075e076a38698a0fd1e0b7e.jpg", name: "Mobile Legends: Bang Bang", descrption:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate nequequas" },
-  { id: 2, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles-plain/Honor-of-Kings-Tile.png", name: "Honor of Kings" , descrption:"Lorem ipsum dolor sit amet..." },
-  { id: 3, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/pubgm_tile_aug2024.jpg" , name: "PubG Mobile", descrption:"Lorem ipsum dolor sit amet..." },
-  { id: 4, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/garena_shells_tile.jpg", name: "Garena Shells" , descrption:"Lorem ipsum dolor sit amet..." },
-  { id: 5, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/zepeto_tile.png", name: "Zepeto", descrption:"Lorem ipsum dolor sit amet..." },
-  { id: 6, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/EA_FC_Oct_2025.png", name: "EA FC" , descrption:"Lorem ipsum dolor sit amet..."}
-]);
+const games = ref([])
+
+onMounted(()=>{
+    axios.get('http://127.0.0.1:8000/api/game')
+      .then(response => {
+        games.value = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+})
 
 const gameId = Number(route.params.id)
 

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="grid">
     <div class="col-12 md:col-6 lg:col-2  m-0" v-for="datas in data" :key="datas.id">
         <RouterLink :to="`/game/${datas.id}`">
@@ -21,20 +21,90 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
- 
-const data = ref([
-  { id: 1, image: "https://i.pinimg.com/474x/d9/a1/69/d9a169b14075e076a38698a0fd1e0b7e.jpg", name: "Mobile Legends: Bang Bang" },
-  { id: 2, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles-plain/Honor-of-Kings-Tile.png", name: "Honor of Kings" },
-  { id: 3, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/pubgm_tile_aug2024.jpg" , name: "PubG Mobile" },
-  { id: 4, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/garena_shells_tile.jpg", name: "Garena Shells" },
-  { id: 5, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/zepeto_tile.png", name: "Zepeto" },
-  { id: 6, image:"https://cdn1.codashop.com/S/content/mobile/images/product-tiles/EA_FC_Oct_2025.png", name: "EA FC" },
-]);
+import { ref, onMounted  } from 'vue';
+import axios from 'axios'
+
+const data = ref([])
+
+async function getData(){
+    const res = await axios.get('http://127.0.0.1:8000/api/game')
+    if(res.data){
+        data.value = res.data
+    }
+}
+
+onMounted(()=>{
+getData()
+})
+
+const props = defineProps({
+    games: {
+        type: Array,
+        required: true
+    }
+})
+
 </script>
 <style scoped>
     .p-card-body{
         padding: 0;
         margin: 0;
     }
+</style> -->
+
+<template>
+  <div class="grid">
+    <div
+      class="col-12 md:col-6 lg:col-2 m-0"
+      v-for="game in games"
+      :key="game.id"
+    >
+      <RouterLink :to="`/game/${game.id}`">
+        <Card class="m-0 p-0 overflow-hidden h-full">
+          <template #header>
+            <div class="w-full h-12rem overflow-hidden relative">
+              <img
+                :src="game.image"
+                class="object-cover w-full h-full"
+                alt="game image"
+              />
+              <!-- Optional badges -->
+              <span
+                v-if="game.is_new"
+                class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded"
+              >
+                NEW
+              </span>
+              <span
+                v-if="game.is_popular"
+                class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded"
+              >
+                POPULAR
+              </span>
+            </div>
+          </template>
+
+          <template #content>
+            <p class="text-center font-bold m-0 p-2">{{ game.name }}</p>
+          </template>
+        </Card>
+      </RouterLink>
+    </div>
+  </div>
+</template>
+
+<script setup>
+defineProps({
+  games: {
+    type: Array,
+    required: true
+  }
+})
+</script>
+
+<style scoped>
+.p-card-body {
+  padding: 0;
+  margin: 0;
+}
 </style>

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('is_popular')->nullable();
+            $table->boolean('is_new')->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
