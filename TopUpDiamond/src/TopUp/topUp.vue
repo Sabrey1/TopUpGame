@@ -147,10 +147,15 @@ const gamePackages = ref([]);
 const BestSellers = ref([]);
 const gameName = ref('');
 
+const emit = defineEmits(['package-selected'])
+
 const selectedPackageId = ref(null)
+
+
 
 const selectPackage = (pkg) => {
   selectedPackageId.value = pkg.id
+   emit('package-selected', pkg) 
 }
 
 async function getPackagesByGame(id) {
