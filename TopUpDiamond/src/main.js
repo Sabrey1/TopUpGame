@@ -25,6 +25,8 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 // import Dialog from 'primevue/dialog';
 
+import sidebar from '@/Admin/Layouts/sidebar.vue'
+
 
 const app = createApp(App)
 app.use(routes)
@@ -44,7 +46,7 @@ app.component('Toolbar', Toolbar);
 app.component('Avatar', Avatar);
 app.component('InputText', InputText);
 app.component('Button', Button);
-// app.component('Dialog', Dialog);
+app.component('sidebar', sidebar);
 
 
 app.use(i18n);

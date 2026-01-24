@@ -4,7 +4,10 @@ import { createRouter, createWebHistory } from "vue-router"
 import Home from "@/Home/Home.vue"
 import CardDetail from '@/Home/components/CardDetail.vue'
 
-import QuickPayment from '@/Payment/QuickPayment.vue'
+import CourselList from '@/Admin/CourselList/CourselList.vue'
+import sidebar from '@/Admin/Layouts/sidebar.vue'
+import TimeRun from '@/Admin/Layouts/TimeRun.vue'
+
 
 const routes = [
   {
@@ -13,15 +16,26 @@ const routes = [
     component: Home,
   },
   {
-    path: "/ss",
-    name: "QuickPayment",
-    component: QuickPayment,
-  },
-  {
     path: "/game/:id",
     name: "CardDetail",
     component: CardDetail,
   }
+
+
+  //admin
+  ,{
+    path: "/admin",
+    name: "sidebar",
+    component: sidebar,
+  }
+  ,{
+    path: "/admin/coursellist",
+    name: "CourselList",
+    component: CourselList,
+    meta: { title: 'Coursel List' }
+  }
+  
+  
 ]
 
 const router = createRouter({
