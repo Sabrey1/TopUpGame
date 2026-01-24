@@ -6,7 +6,9 @@ import CardDetail from '@/Home/components/CardDetail.vue'
 
 import CourselList from '@/Admin/CourselList/CourselList.vue'
 import sidebar from '@/Admin/Layouts/sidebar.vue'
-import TimeRun from '@/Admin/Layouts/TimeRun.vue'
+import GameList from '@/Admin/Game/GameList.vue'
+import OrderList from '@/Admin/Order/OrderList.vue'
+import PaymentList from '@/Admin/Payment/PaymentList.vue'
 
 
 const routes = [
@@ -34,6 +36,25 @@ const routes = [
     component: CourselList,
     meta: { title: 'Coursel List' }
   }
+  ,{
+    path: "/admin/game-list",
+    name: "GameList",
+    component: GameList,
+    meta: { title: 'Game List' }
+  }
+  ,{
+    path: "/admin/payment-list",
+    name: "PaymentList",
+    component: PaymentList,
+    meta: { title: 'Payment List' }
+  }
+  ,{
+    path: "/admin/order-list",
+    name: "OrderList",
+    component: OrderList,
+    meta: { title: 'Order List' }
+  }
+  
   
   
 ]

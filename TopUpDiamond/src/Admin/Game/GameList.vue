@@ -1,7 +1,7 @@
 <template>
     <sidebar>
         <div>
-            Order
+            Game
         </div>
     </sidebar>
 </template>
