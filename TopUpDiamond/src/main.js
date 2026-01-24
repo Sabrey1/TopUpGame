@@ -6,6 +6,9 @@ import routes from '@/routes/routes.js'
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 
+import ToastService from 'primevue/toastservice';
+
+
 import '/node_modules/primeflex/primeflex.css'
 
 import i18n from './i18n'
@@ -31,6 +34,8 @@ app.use(PrimeVue, {
         preset: Aura
     }
 });
+
+app.use(ToastService);
 app.component('Header', Header);
 app.component('Footer', Footer);
 app.component('Chip', Chip);

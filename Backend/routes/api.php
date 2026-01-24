@@ -27,7 +27,7 @@ Route::get('/order',[OrdersController::class,'index'])->name('order.index');
     Route::get('/payments', [PaymentsController::class, 'index'])->name('payments.index');
     Route::get('/checkout/{id}', [PaymentsController::class, 'checkout'])->name('payments.checkout');
     Route::post('/verify', [PaymentsController::class, 'verifyTransaction'])->name('payments.verify');
-    Route::post('/', [PaymentsController::class, 'storePayment'])->name('payments.store');
+    Route::post('/payment', [PaymentsController::class, 'storePayment'])->name('payments.store');
  
 
 //payment_type
