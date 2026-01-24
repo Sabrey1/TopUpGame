@@ -9,6 +9,8 @@ import sidebar from '@/Admin/Layouts/sidebar.vue'
 import GameList from '@/Admin/Game/GameList.vue'
 import OrderList from '@/Admin/Order/OrderList.vue'
 import PaymentList from '@/Admin/Payment/PaymentList.vue'
+import PaymentTypeList from '@/Admin/PaymentType/PaymentTypeList.vue'
+import TopUpPackageList from '@/Admin/TopUpPackage/TopUpPackageList.vue'
 
 
 const routes = [
@@ -53,6 +55,18 @@ const routes = [
     name: "OrderList",
     component: OrderList,
     meta: { title: 'Order List' }
+  }
+  ,{
+    path: "/admin/payment-type-list",
+    name: "PaymentTypeList",
+    component: PaymentTypeList,
+    meta: { title: 'Payment Type List' }
+  }
+  ,{
+    path: "/admin/top-up-package-list",
+    name: "TopUpPackageList",
+    component: TopUpPackageList,
+    meta: { title: 'Top Up Package List' }
   }
   
   

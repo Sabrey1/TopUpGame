@@ -48,7 +48,7 @@
         </li>
         <li>
           <RouterLink
-            to="/admin/coursellist"
+            to="/admin/payment-type-list"
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
           >
             <i class="pi pi-home mr-3"></i>
@@ -57,7 +57,7 @@
         </li>
         <li>
           <RouterLink
-            to="/admin/coursellist"
+            to="/admin/top-up-package-list"
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
           >
             <i class="pi pi-home mr-3"></i>
