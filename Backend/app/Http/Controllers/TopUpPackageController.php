@@ -12,7 +12,14 @@ class TopUpPackageController extends Controller
      */
     public function index()
     {
-        $topUpPackages = TopUpPackage::all(); // Use the correct model name
+        $topUpPackages = TopUpPackage::leftJoin(
+            'games',
+            'topup_packages.game_id',
+            '=',
+            'games.id'
+        )
+        ->select('topup_packages.*', 'games.name as game_name')
+        ->get();
         return response()->json($topUpPackages);
     }
 

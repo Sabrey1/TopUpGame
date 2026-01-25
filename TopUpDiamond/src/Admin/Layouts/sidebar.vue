@@ -66,7 +66,7 @@
         </li>
         <li>
           <RouterLink
-            to="/user"
+            to="/admin/user-list"
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
           >
             <i class="pi pi-box mr-3"></i>

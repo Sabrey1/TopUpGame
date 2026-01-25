@@ -11,6 +11,7 @@ import OrderList from '@/Admin/Order/OrderList.vue'
 import PaymentList from '@/Admin/Payment/PaymentList.vue'
 import PaymentTypeList from '@/Admin/PaymentType/PaymentTypeList.vue'
 import TopUpPackageList from '@/Admin/TopUpPackage/TopUpPackageList.vue'
+import UserList from '@/Admin/User/UserList.vue'
 
 
 const routes = [
@@ -67,6 +68,12 @@ const routes = [
     name: "TopUpPackageList",
     component: TopUpPackageList,
     meta: { title: 'Top Up Package List' }
+  }
+  ,{
+    path: "/admin/user-list",
+    name: "UserList",
+    component: UserList,
+    meta: { title: 'User List' }
   }
   
   
