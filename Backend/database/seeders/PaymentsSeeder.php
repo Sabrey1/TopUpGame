@@ -5,62 +5,34 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PaymentsSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('payments')->insert([
-            [
-                'order_id' => 1,
-                'payment_type_id' => 1,
-                'amount' => 1.99,
+        $orders = DB::table('orders')->pluck('id')->toArray();
+        $paymentTypes = DB::table('payment_type')->pluck('id')->toArray();
+        $topupPackages = DB::table('topup_packages')->pluck('id')->toArray();
+
+        if (empty($orders) || empty($paymentTypes)) {
+            $this->command->info('Orders or Payment Types are missing. Please seed them first!');
+            return;
+        }
+
+        for ($i = 0; $i < 5; $i++) {
+            DB::table('payments')->insert([
+                'order_id' => $orders[array_rand($orders)],
+                'payment_type_id' => $paymentTypes[array_rand($paymentTypes)],
+                'topup_package_id' => $topupPackages ? $topupPackages[array_rand($topupPackages)] : null,
+                'amount' => rand(100, 1500) / 100, // Random amount like 1.00 - 15.00
                 'transaction_reference' => Str::uuid(),
-                'status' => 'success',
-                'paid_at' => now(),
+                'md5' => Str::random(32),
+                'status' => ['success', 'pending', 'failed'][array_rand(['success', 'pending', 'failed'])],
+                'paid_at' => Carbon::now()->subDays(rand(0, 10)),
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'order_id' => 2,
-                'payment_type_id' => 2,
-                'amount' => 3.99,
-                'transaction_reference' => Str::uuid(),
-                'status' => 'pending',
-                'paid_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'order_id' => 3,
-                'payment_type_id' => 5,
-                'amount' => 2.50,
-                'transaction_reference' => Str::uuid(),
-                'status' => 'success',
-                'paid_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'order_id' => 4,
-                'payment_type_id' => 7,
-                'amount' => 5.99,
-                'transaction_reference' => Str::uuid(),
-                'status' => 'failed',
-                'paid_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'order_id' => 5,
-                'payment_type_id' => 6,
-                'amount' => 14.99,
-                'transaction_reference' => Str::uuid(),
-                'status' => 'success',
-                'paid_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
     }
 }

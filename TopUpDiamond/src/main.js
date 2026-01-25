@@ -27,6 +27,9 @@ import InputText from 'primevue/inputtext';
 
 import sidebar from '@/Admin/Layouts/sidebar.vue'
 
+import dayjs from 'dayjs'
+
+import Currency from '@/layouts/Currency.vue'
 
 const app = createApp(App)
 app.use(routes)
@@ -47,9 +50,10 @@ app.component('Avatar', Avatar);
 app.component('InputText', InputText);
 app.component('Button', Button);
 app.component('sidebar', sidebar);
+app.component('Currency', Currency);
 
 
 app.use(i18n);
 window.t = (key) => i18n.global.t(key)
-
+app.config.globalProperties.$dayjs = dayjs
 app.mount('#app')

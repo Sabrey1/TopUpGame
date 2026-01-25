@@ -18,17 +18,17 @@ Route::get('/user', function (Request $request) {
 Route::get('/game',[GamesController::class,'index'])->name('game.index');
 
 // topup Package
- 
+
 Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('topupPackage.index');
 
 // order
 Route::get('/order',[OrdersController::class,'index'])->name('order.index');
- 
+
     Route::get('/payments', [PaymentsController::class, 'index'])->name('payments.index');
     Route::get('/checkout/{id}', [PaymentsController::class, 'checkout'])->name('payments.checkout');
     Route::post('/verify', [PaymentsController::class, 'verifyTransaction'])->name('payments.verify');
     Route::post('/payment', [PaymentsController::class, 'storePayment'])->name('payments.store');
- 
+
 
 //payment_type
 Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');

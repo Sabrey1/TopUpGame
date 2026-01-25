@@ -16,7 +16,7 @@
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
           >
             <i class="pi pi-home mr-3"></i>
-            <span>{{ t("Dashboard") }}</span>
+            <span>{{ t("Coursel") }}</span>
           </RouterLink>
         </li>
         <li>

@@ -283,7 +283,7 @@ const confirmOrder = async () => {
 /* PAYMENT CONFIRM */
 const confirmPayment = async () => {
   try {
-    await axios.post('http://localhost:8000/api/payments', {
+    await axios.post('http://localhost:8000/api/payment', {
       topup_package_id: props.selectedPackage.id,
       md5: md5.value,
       amount: props.selectedPackage.price

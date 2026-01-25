@@ -14,10 +14,37 @@ class PaymentsController extends Controller
 {
     // List all payments
     public function index()
-    {
-        $payments = Payments::all();
-        return response()->json($payments);
-    }
+{
+    $payments = Payments::leftJoin(
+            'topup_packages',
+            'payments.topup_package_id',
+            '=',
+            'topup_packages.id'
+        )
+        ->leftJoin(
+            'orders',
+            'payments.order_id',
+            '=',
+            'orders.id'
+        )->leftJoin(
+            'payment_type',
+            'payments.payment_type_id',
+            '=',
+            'payment_type.id'
+        )
+        ->select(
+            'payments.*',
+            'topup_packages.name as package_name',
+            'topup_packages.amount',
+            'topup_packages.price',
+            'orders.order_code as order_code',
+            'payment_type.name as payment_type'
+        )
+        ->get();
+
+    return response()->json($payments);
+}
+
 
     // Checkout — generate Bakong QR
     public function checkout($id)
@@ -80,11 +107,11 @@ class PaymentsController extends Controller
         ]);
 
         $payment = Payments::create([
-            
+
             'topup_package_id' => $request->topup_package_id,
             'md5' => $request->md5,
             'amount' => $request->amount,
-            'status' => 'pending',
+            'status' => 'paid',
         ]);
 
         return response()->json([
