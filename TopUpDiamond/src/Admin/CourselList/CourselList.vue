@@ -4,7 +4,7 @@
             <div class="flex justify-content-end">
                 <CourselCreate />
             </div>
-            {{ coursels }}
+            
             <div class="card">
             <DataTable :value="coursels" :loading="loading" tableStyle="min-width: 50rem">
                 <Column  header="No">
@@ -23,8 +23,8 @@
                     <template #body="slotProps">
                         <div class="flex gap-2"> 
                             <CourselShow :coursel="slotProps.data" />
-                            <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
-                            <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
+                            <CourselEdit :coursel="slotProps.data" />
+                            <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete"></Button>
                            
                         </div>
                         
@@ -45,6 +45,7 @@ import axios from 'axios';
 import Button from 'primevue/button';
 import CourselCreate from '@/Admin/CourselList/CourselCreate.vue'
 import CourselShow from '@/Admin/CourselList/CourselShow.vue'
+import CourselEdit from '@/Admin/CourselList/CourselEdit.vue'
 
 const loading = ref(true);
 
@@ -59,6 +60,11 @@ async function getData(){
     }
      loading.value = false;
 }
+
+function onDelete(){
+    alert('Delete');
+}
+
 
 onMounted(()=>{
 getData();

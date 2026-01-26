@@ -12,6 +12,7 @@ class CourselController extends Controller
      */
     public function index()
     {
+        // $coursel = Coursel::limit(4)->get();
         $coursel = Coursel::all();
         return response()->json($coursel);
     } 
@@ -25,11 +26,19 @@ class CourselController extends Controller
             'title' => 'required',
         ]);
 
+
+        $path = $request->file('image')->store('coursels', 'public');
+
+        // Generate public URL
+        $imageUrl = asset('storage/' . $path);
+
         $coursel = new Coursel();
         $coursel->title = $request->title;
-        $coursel->image = $request->image;
+        $coursel->image = $imageUrl;
         $coursel->description = $request->description;
         $coursel->save();
+
+        
 
         return response()->json([
             'coursel' => $coursel,
@@ -58,9 +67,14 @@ class CourselController extends Controller
             'title' => 'required',
         ]);
 
+        $path = $request->file('image')->store('coursels', 'public');
+
+        // Generate public URL
+        $imageUrl = asset('storage/' . $path);
+
         $coursel = Coursel::find($id);
         $coursel->title = $request->title;
-        $coursel->image = $request->image;
+        $coursel->image = $imageUrl;
         $coursel->description = $request->description;
         $coursel->save();
 

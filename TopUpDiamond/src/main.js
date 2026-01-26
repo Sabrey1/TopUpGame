@@ -27,6 +27,8 @@ import InputText from 'primevue/inputtext';
 
 import FileUpload from 'primevue/fileupload';
 
+import Dialog from 'primevue/dialog';
+
 
 import sidebar from '@/Admin/Layouts/sidebar.vue'
 
@@ -55,6 +57,7 @@ app.component('Avatar', Avatar);
 app.component('InputText', InputText);
 app.component('Button', Button);
 app.component('FileUpload', FileUpload);
+app.component('Dialog', Dialog);
 
 
 

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('panel_coursel', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image');
-            $table->string('description');
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
