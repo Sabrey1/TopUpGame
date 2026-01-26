@@ -25,6 +25,9 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 // import Dialog from 'primevue/dialog';
 
+import FileUpload from 'primevue/fileupload';
+
+
 import sidebar from '@/Admin/Layouts/sidebar.vue'
 
 import dayjs from 'dayjs'
@@ -43,14 +46,16 @@ app.use(PrimeVue, {
 app.use(ToastService);
 app.component('Header', Header);
 app.component('Footer', Footer);
+app.component('sidebar', sidebar);
+app.component('Currency', Currency);
 app.component('Chip', Chip);
 app.component('Card', Card);
 app.component('Toolbar', Toolbar);
 app.component('Avatar', Avatar);
 app.component('InputText', InputText);
 app.component('Button', Button);
-app.component('sidebar', sidebar);
-app.component('Currency', Currency);
+app.component('FileUpload', FileUpload);
+
 
 
 app.use(i18n);

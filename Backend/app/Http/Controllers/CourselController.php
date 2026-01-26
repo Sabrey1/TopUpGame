@@ -14,53 +14,72 @@ class CourselController extends Controller
     {
         $coursel = Coursel::all();
         return response()->json($coursel);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    } 
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validate = request()->validate([
+            'title' => 'required',
+        ]);
+
+        $coursel = new Coursel();
+        $coursel->title = $request->title;
+        $coursel->image = $request->image;
+        $coursel->description = $request->description;
+        $coursel->save();
+
+        return response()->json([
+            'coursel' => $coursel,
+            'message' => 'Coursel created successfully',
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Coursel $coursel)
+    public function show(Coursel $coursel, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Coursel $coursel)
-    {
-        //
+        $coursel = Coursel::find($id);
+        return response()->json([
+            'coursel' => $coursel,
+            'message' => 'Coursel found successfully',
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Coursel $coursel)
+    public function update(Request $request, Coursel $coursel, $id)
     {
-        //
+        $validate = request()->validate([
+            'title' => 'required',
+        ]);
+
+        $coursel = Coursel::find($id);
+        $coursel->title = $request->title;
+        $coursel->image = $request->image;
+        $coursel->description = $request->description;
+        $coursel->save();
+
+        return response()->json([
+            'coursel' => $coursel,
+            'message' => 'Coursel updated successfully',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Coursel $coursel)
+    public function destroy(Coursel $coursel, $id)
     {
-        //
+        $coursel = Coursel::find($id);
+        $coursel->delete();
+        return response()->json([
+            'coursel' => $coursel,
+            'message' => 'Coursel deleted successfully',
+        ]);
     }
 }

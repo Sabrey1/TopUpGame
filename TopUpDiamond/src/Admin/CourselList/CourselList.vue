@@ -2,8 +2,9 @@
     <sidebar>
         <div>
             <div class="flex justify-content-end">
-                <Button icon="pi pi-plus" label="Add "></Button>
+                <CourselCreate />
             </div>
+            {{ coursels }}
             <div class="card">
             <DataTable :value="coursels" :loading="loading" tableStyle="min-width: 50rem">
                 <Column  header="No">
@@ -21,7 +22,7 @@
                 <Column header="Action">
                     <template #body="slotProps">
                         <div class="flex gap-2"> 
-                            <Button icon="pi pi-eye" label="View" class="p-button-warning"></Button>
+                            <CourselShow :coursel="slotProps.data" />
                             <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
                            
@@ -42,6 +43,8 @@ import Avatar from 'primevue/avatar';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Button from 'primevue/button';
+import CourselCreate from '@/Admin/CourselList/CourselCreate.vue'
+import CourselShow from '@/Admin/CourselList/CourselShow.vue'
 
 const loading = ref(true);
 
