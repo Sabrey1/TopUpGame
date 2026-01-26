@@ -13,6 +13,7 @@ import PaymentTypeList from '@/Admin/PaymentType/PaymentTypeList.vue'
 import TopUpPackageList from '@/Admin/TopUpPackage/TopUpPackageList.vue'
 import UserList from '@/Admin/User/UserList.vue'
 import Login from '@/Auth/Login.vue'
+import Register from '@/Auth/Register.vue'
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/game/:id",
