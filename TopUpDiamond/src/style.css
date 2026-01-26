@@ -30,6 +30,16 @@ a{
   padding: 0 !important;
 }
 
+:deep(.p-datatable) {
+    table-layout: fixed;
+}
+
+:deep(.p-datatable-thead > tr > th) {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

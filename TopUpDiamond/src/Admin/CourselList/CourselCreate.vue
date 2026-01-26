@@ -63,6 +63,7 @@ async function AddCoursel() {
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
+  window.location.reload()
 
   visible.value = false
 }

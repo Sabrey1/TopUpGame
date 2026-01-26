@@ -58,24 +58,24 @@ class CourselController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Coursel $coursel, $id)
+    public function update(Request $request, $id)
     {
-        $validate = request()->validate([
-            'title' => 'required',
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|max:1024',
         ]);
 
-        $path = $request->file('image')->store('coursels', 'public');
+        $coursel = Coursel::findOrFail($id);
 
-        // Generate public URL
-        $imageUrl = asset('storage/' . $path);
-
-        $coursel = Coursel::find($id);
         $coursel->title = $request->title;
-        $coursel->image = $imageUrl;
         $coursel->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('coursels', 'public');
+            $coursel->image = asset('storage/' . $path);
+        }
+
         $coursel->save();
 
         return response()->json([
@@ -83,6 +83,7 @@ class CourselController extends Controller
             'message' => 'Coursel updated successfully',
         ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
