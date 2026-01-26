@@ -19,15 +19,15 @@
                     </Column>
                     <Column field="description" header="Description" style="width: 300px">
                         <template #body="slotProps">
-                            {{ slotProps.data.description }}sssssssssss
+                            {{ slotProps.data.description || '-' }}
                         </template>
                     </Column>
                     <Column header="Action" style="width: 320px;">
                         <template #body="slotProps">
                             <div class="flex gap-2"> 
-                                <Button icon="pi pi-eye" label="View" class="p-button-warning"></Button>
-                                <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
-                                <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
+                                <PaymentTypeShow :payment_type="slotProps.data" />
+                                <PaymentTypeEdit :payment_type="slotProps.data" />
+                                <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="OnDelete(slotProps.data.id)"></Button>
                             </div>
                         </template>
                     </Column>
@@ -42,10 +42,13 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import PaymentTypeCreate from '@/Admin/PaymentType/PaymentTypeCreate.vue'
+import PaymentTypeShow from '@/Admin/PaymentType/PaymentTypeShow.vue'
+import PaymentTypeEdit from '@/Admin/PaymentType/PaymentTypeEdit.vue'
 
 const loading = ref(true);
 
 const payment_type = ref([]);
+
 async function getData(){
      loading.value = true;
     const res = await axios.get('http://localhost:8000/api/payment_type');
@@ -53,6 +56,16 @@ async function getData(){
         payment_type.value = res.data; 
     }
      loading.value = false;
+}
+
+function OnDelete(id) {
+    const onComfirm =  window.confirm('Are you sure you want to delete this item?');
+    if(!onComfirm)return
+
+    const res = axios.delete(`http://localhost:8000/api/payment_type/${id}`).then(res=>{
+        getData();
+    })
+    
 }
 
 onMounted(()=>{

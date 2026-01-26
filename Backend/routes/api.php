@@ -36,6 +36,10 @@ Route::post('/payment', [PaymentsController::class, 'storePayment'])->name('paym
 
 //payment_type
 Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('payment_type.index');
+Route::get('/payment_type/{id}',[PaymentTypeController::class,'show'])->name('payment_type.show');
+Route::post('/payment_type',[PaymentTypeController::class,'store'])->name('payment_type.store');
+Route::put('/payment_type/{id}',[PaymentTypeController::class,'update'])->name('payment_type.update');
+Route::delete('/payment_type',[PaymentTypeController::class,'destroy'])->name('payment_type.destroy');
 
 //cursel
 Route::get('/panel_coursel',[CourselController::class,'index'])->name('panel_coursel.index');

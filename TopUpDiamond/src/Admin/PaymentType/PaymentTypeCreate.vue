@@ -2,12 +2,12 @@
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
 
-    <Dialog v-model:visible="visible" modal header="Add Coursel" style="width:25rem">
+    <Dialog v-model:visible="visible" modal header="Add Payment Type" style="width:25rem">
       
-      <!-- TITLE -->
+      <!-- Name -->
       <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24">Title</label>
-        <InputText v-model="Coursel.title" class="flex-auto" />
+        <label class="font-semibold w-24">Name</label>
+        <InputText v-model="PaymentType.name" class="flex-auto" />
       </div>
 
       <!-- IMAGE -->
@@ -23,13 +23,13 @@
       <!-- DESCRIPTION -->
       <div class="flex items-center gap-4 mb-8">
         <label class="font-semibold w-24">Description</label>
-        <InputText v-model="Coursel.description" class="flex-auto" />
+        <InputText v-model="PaymentType.description" class="flex-auto" />
       </div>
 
       <!-- ACTIONS -->
       <div class="flex justify-end gap-2">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
-        <Button label="Save" @click="AddCoursel" />
+        <Button label="Save" @click="AddPaymentType" />
       </div>
 
     </Dialog>
@@ -42,24 +42,24 @@ import axios from 'axios'
 
 const visible = ref(false)
 
-const Coursel = ref({
-  title: '',
+const PaymentType = ref({
+  name: '',
   description: '',
   image: null
 })
 
 function onSelect(e) {
-  Coursel.value.image = e.files[0]
+  PaymentType.value.image = e.files[0]
 }
 
-async function AddCoursel() {
+async function AddPaymentType() {
   const formData = new FormData()
-  formData.append('title', Coursel.value.title)
-  formData.append('description', Coursel.value.description)
-  formData.append('image', Coursel.value.image)
+  formData.append('name', PaymentType.value.name)
+  formData.append('description', PaymentType.value.description)
+  formData.append('image', PaymentType.value.image)
 
   await axios.post(
-    'http://localhost:8000/api/panel_coursel',
+    'http://localhost:8000/api/payment_type',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
