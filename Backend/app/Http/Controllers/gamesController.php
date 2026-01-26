@@ -16,14 +16,6 @@ class gamesController extends Controller
         return response()->json($game);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
