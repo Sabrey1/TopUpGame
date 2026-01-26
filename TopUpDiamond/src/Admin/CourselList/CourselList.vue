@@ -37,12 +37,8 @@
 </template>
 
 <script setup>
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Avatar from 'primevue/avatar';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import Button from 'primevue/button';
 import CourselCreate from '@/Admin/CourselList/CourselCreate.vue'
 import CourselShow from '@/Admin/CourselList/CourselShow.vue'
 import CourselEdit from '@/Admin/CourselList/CourselEdit.vue'

@@ -20,12 +20,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import Dialog from 'primevue/dialog';
 import dayjs from 'dayjs';
- 
 
 const visible = ref(false);
-
 
 const prop = defineProps({
     coursel: Object

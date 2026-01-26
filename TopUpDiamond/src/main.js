@@ -23,6 +23,8 @@ import Dialog from 'primevue/dialog';
 import sidebar from '@/Admin/Layouts/sidebar.vue'
 import dayjs from 'dayjs'
 import Currency from '@/layouts/Currency.vue'
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 const app = createApp(App)
 app.use(routes)
@@ -46,6 +48,9 @@ app.component('Button', Button);
 app.component('FileUpload', FileUpload);
 app.component('Dialog', Dialog);
 app.component('Checkbox', Checkbox);
+app.component('DataTable', DataTable);
+app.component('Column', Column);
+
 app.use(i18n);
 window.t = (key) => i18n.global.t(key)
 app.config.globalProperties.$dayjs = dayjs
