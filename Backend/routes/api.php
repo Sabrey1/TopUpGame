@@ -16,6 +16,10 @@ Route::get('/user', function (Request $request) {
 
 // game
 Route::get('/game',[GamesController::class,'index'])->name('game.index');
+Route::get('/game/{id}',[GamesController::class,'show'])->name('game.show');
+Route::post('/game',[GamesController::class,'store'])->name('game.store');
+Route::put('/game/{id}',[GamesController::class,'update'])->name('game.update');
+Route::delete('/game/{id}',[GamesController::class,'destroy'])->name('game.destroy');
 
 // topup Package
 

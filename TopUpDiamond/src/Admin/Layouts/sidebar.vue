@@ -28,7 +28,7 @@
             <span>{{ t("Game") }}</span>
           </RouterLink>
         </li>
-        <li>
+        <!-- <li>
           <RouterLink
             to="/admin/order-list"
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
@@ -36,7 +36,7 @@
             <i class="pi pi-home mr-3"></i>
             <span>{{ t("Orders") }}</span>
           </RouterLink>
-        </li>
+        </li> -->
         <li>
           <RouterLink
             to="/admin/payment-list"

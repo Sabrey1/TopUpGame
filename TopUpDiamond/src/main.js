@@ -2,18 +2,12 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import routes from '@/routes/routes.js'
-
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
-
 import ToastService from 'primevue/toastservice';
-
-
 import '/node_modules/primeflex/primeflex.css'
-
 import i18n from './i18n'
 import 'primeicons/primeicons.css'
-
 // import component
 import Header from '@/layouts/Header.vue'
 import Footer from '@/layouts/Footer.vue'
@@ -23,22 +17,15 @@ import Toolbar from 'primevue/toolbar';
 import Avatar from 'primevue/avatar';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
-// import Dialog from 'primevue/dialog';
-
+import Checkbox from 'primevue/checkbox';
 import FileUpload from 'primevue/fileupload';
-
 import Dialog from 'primevue/dialog';
-
-
 import sidebar from '@/Admin/Layouts/sidebar.vue'
-
 import dayjs from 'dayjs'
-
 import Currency from '@/layouts/Currency.vue'
 
 const app = createApp(App)
 app.use(routes)
-
 app.use(PrimeVue, {
     theme: {
         preset: Aura
@@ -58,9 +45,7 @@ app.component('InputText', InputText);
 app.component('Button', Button);
 app.component('FileUpload', FileUpload);
 app.component('Dialog', Dialog);
-
-
-
+app.component('Checkbox', Checkbox);
 app.use(i18n);
 window.t = (key) => i18n.global.t(key)
 app.config.globalProperties.$dayjs = dayjs
