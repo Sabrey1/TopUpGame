@@ -25,11 +25,12 @@ class TopUpPackageController extends Controller
 
     public function store(Request $request)
     {
-        $request->valitedate([
+        $request->validate([
             'game_id' => 'required',
             'name' => 'required',
             'amount' => 'required',
-            'price' => 'required',
+            'fullprice' => 'required',
+            'currency' => 'required',
             'Unit' => 'required',
              
         ]);
@@ -45,8 +46,10 @@ class TopUpPackageController extends Controller
         $topUp->name = $request->name;
         $topUp->amount = $request->amount;
         $topUp->image = $imageUrl;
-        $topUp->price = $request->price;
+        $topUp->fullprice = $request->fullprice;
+        $topUp->currency = $request->currency;
         $topUp->Unit = $request->Unit;
+        $topUp->description = $request->description;
         $topUp->discount = $request->discount;
         $topUp->best_seller = $request->best_seller;
         $topUp->save();
@@ -79,7 +82,7 @@ class TopUpPackageController extends Controller
             'game_id' => 'required',
             'name' => 'required',
             'amount' => 'required',
-            'price' => 'required',
+            'fullprice' => 'required',
             'Unit' => 'required',
         ]);
 
@@ -89,7 +92,7 @@ class TopUpPackageController extends Controller
         $topUpPackage->description = $request->description;
         $topUpPackage->game_id = $request->game_id;
         $topUpPackage->amount = $request->amount;
-        $topUpPackage->price = $request->price;
+        $topUpPackage->fullprice = $request->fullprice;
         $topUpPackage->Unit = $request->Unit;
         $topUpPackage->discount = $request->discount;
         $topUpPackage->best_seller = $request->best_seller;

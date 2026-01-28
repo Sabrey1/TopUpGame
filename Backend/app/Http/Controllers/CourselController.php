@@ -63,7 +63,7 @@ class CourselController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:1024',
+            
         ]);
 
         $coursel = Coursel::findOrFail($id);

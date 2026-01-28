@@ -26,6 +26,8 @@ import Currency from '@/layouts/Currency.vue'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
+import "@/services/app";
+
 const app = createApp(App)
 app.use(routes)
 app.use(PrimeVue, {

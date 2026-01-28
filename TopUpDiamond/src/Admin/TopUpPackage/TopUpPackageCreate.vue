@@ -9,6 +9,18 @@
         <label class="font-semibold w-24">Name</label>
         <InputText v-model="TopUpPackage.name" class="flex-auto" />
       </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24">Game</label>
+        <InputText v-model="TopUpPackage.game_id" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24">Full Price</label>
+        <InputText v-model="TopUpPackage.fullprice" class="flex-auto" />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label class="font-semibold w-24">Currency</label>
+        <InputText v-model="TopUpPackage.currency" class="flex-auto" />
+      </div>
 
       <!-- IMAGE -->
       <div class="mb-4">
@@ -65,9 +77,12 @@ const visible = ref(false)
 
 const TopUpPackage = ref({
 
+  game_id: '',
   name: '',
   amount: '',
+  currency: '',
   Unit: '',
+  fullprice: '',
   best_seller: false,
   description: '',
   discount: '',
@@ -80,7 +95,10 @@ function onSelect(e) {
 
 async function AddTopUpPackage() {
   const formData = new FormData()
+  formData.append('game_id', TopUpPackage.value.game_id)
   formData.append('name', TopUpPackage.value.name)
+  formData.append('fullprice', TopUpPackage.value.fullprice)
+  formData.append('currency', TopUpPackage.value.currency)
   formData.append('amount', TopUpPackage.value.amount)
   formData.append('Unit', TopUpPackage.value.Unit)
   formData.append('best_seller', TopUpPackage.value.best_seller ? 1 : 0)
@@ -97,4 +115,5 @@ async function AddTopUpPackage() {
 
   visible.value = false
 }
+
 </script>

@@ -38,18 +38,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import CourselCreate from '@/Admin/CourselList/CourselCreate.vue'
 import CourselShow from '@/Admin/CourselList/CourselShow.vue'
 import CourselEdit from '@/Admin/CourselList/CourselEdit.vue'
-
 const loading = ref(true);
 
 const coursels = ref([]);
 async function getData(){
      loading.value = true;
     
-    const res = await axios.get('http://localhost:8000/api/panel_coursel')
+    const res = await app.getApi('panel_coursel')
     if(res.data){
         coursels.value = res.data;
         
@@ -61,7 +59,7 @@ function onDelete(id){
     const onComfirm =  window.confirm('Are you sure you want to delete this item?');
     if(!onComfirm)return
 
-    const res = axios.delete(`http://localhost:8000/api/panel_coursel/${id}`).then(res=>{
+    const res = app.deleteApi(`panel_coursel/${id}`).then(res=>{
         getData();
     })
     if(res.data){
