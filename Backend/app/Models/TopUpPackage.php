@@ -8,6 +8,20 @@ class TopUpPackage extends Model
 {
     protected $table = 'topup_packages';
 
+    protected $fillable = [
+        'game_id',
+        'name',
+        'description',
+        'image',
+        'amount',
+        'Unit',
+        'discount',
+        'price',
+        'fullprice',
+        'best_seller',
+        'currency',
+    ];
+
     public function game()
     {
         return $this->belongsTo(Games::class, 'game_id');

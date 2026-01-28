@@ -75,9 +75,9 @@ async function AddGame() {
   const formData = new FormData()
   formData.append('name', Game.value.name)
   formData.append('slug', Game.value.slug)
-  formData.append('is_popular', Game.value.is_popular)
-  formData.append('is_new', Game.value.is_new)
-  formData.append('is_active', Game.value.is_active)
+  formData.append('is_popular', Game.value.is_popular ? 1 : 0)
+  formData.append('is_new', Game.value.is_new ? 1 : 0)
+  formData.append('is_active', Game.value.is_active ? 1 : 0)
   formData.append('image', Game.value.image)
 
   await axios.post(

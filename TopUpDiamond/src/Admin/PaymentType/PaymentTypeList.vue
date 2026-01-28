@@ -65,6 +65,9 @@ function OnDelete(id) {
     const res = axios.delete(`http://localhost:8000/api/payment_type/${id}`).then(res=>{
         getData();
     })
+    if(res.data){
+        getData();
+    }
     
 }
 

@@ -24,6 +24,10 @@ Route::delete('/game/{id}',[GamesController::class,'destroy'])->name('game.destr
 // topup Package
 
 Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('topupPackage.index');
+Route::get('/topupPackage/{id}', [TopUpPackageController::class, 'show'])->name('topupPackage.show');
+Route::post('/topupPackage', [TopUpPackageController::class, 'store'])->name('topupPackage.store');
+Route::put('/topupPackage/{id}', [TopUpPackageController::class, 'update'])->name('topupPackage.update');
+Route::delete('/topupPackage/{id}', [TopUpPackageController::class, 'destroy'])->name('topupPackage.destroy');
 
 // order
 Route::get('/order',[OrdersController::class,'index'])->name('order.index');
@@ -39,7 +43,7 @@ Route::get('/payment_type',[PaymentTypeController::class,'index'])->name('paymen
 Route::get('/payment_type/{id}',[PaymentTypeController::class,'show'])->name('payment_type.show');
 Route::post('/payment_type',[PaymentTypeController::class,'store'])->name('payment_type.store');
 Route::put('/payment_type/{id}',[PaymentTypeController::class,'update'])->name('payment_type.update');
-Route::delete('/payment_type',[PaymentTypeController::class,'destroy'])->name('payment_type.destroy');
+Route::delete('/payment_type/{id}',[PaymentTypeController::class,'destroy'])->name('payment_type.destroy');
 
 //cursel
 Route::get('/panel_coursel',[CourselController::class,'index'])->name('panel_coursel.index');

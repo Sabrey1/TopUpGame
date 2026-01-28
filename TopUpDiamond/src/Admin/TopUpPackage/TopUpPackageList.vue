@@ -2,9 +2,10 @@
     <sidebar>
         <div>
             <div class="flex justify-content-end">
-                <Button icon="pi pi-plus" label="Add "></Button>
+                <TopUpPackageCreate />
             </div>
             <div class="card">
+                {{ topupPackage }}
             <DataTable :value="topupPackage" :loading="loading" tableStyle="min-width: 50rem">
 
                 <Column  header="No">
@@ -26,10 +27,11 @@
                 <Column field="description" header="Description"></Column>
                 <Column header="Action">
                     <template #body="slotProps">
-                        <div class="flex gap-2"> 
-                            <Button icon="pi pi-eye" label="View" class="p-button-warning"></Button>
+                        <div class="flex gap-2">
+                            <TopUpPackageShow :topupPackage="slotProps.data" />
+                             
                             <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
-                            <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
+                            <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
                            
                         </div>
                         
@@ -42,16 +44,11 @@
 </template>
 
 <script setup>
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Avatar from 'primevue/avatar';
+
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import Button from 'primevue/button';
-import Chip from 'primevue/chip';
-
-import dayjs from 'dayjs';
-
+import TopUpPackageCreate from '@/Admin/TopUpPackage/TopUpPackageCreate.vue'
+import TopUpPackageShow from '@/Admin/TopUpPackage/TopUpPackageShow.vue'
 
 const loading = ref(true);
 
@@ -66,6 +63,19 @@ async function getData(){
     }
      loading.value = false;
 }
+
+function onDelete(id){
+    const onConform =  window.confirm('Are you sure you want to delete this item?');
+    if(!onConform)return
+
+   const res = axios.delete(`http://localhost:8000/api/topupPackage/${id}`).then(res=>{
+        getData();
+    })
+    if(res.data){
+        getData();
+    }
+}
+
 
 onMounted(()=>{
 getData();
