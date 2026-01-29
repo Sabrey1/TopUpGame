@@ -32,7 +32,7 @@ class TopUpPackageController extends Controller
             'fullprice' => 'required',
             'currency' => 'required',
             'Unit' => 'required',
-             
+
         ]);
 
          $path = $request->file('image')->store('topUpPackage', 'public');
@@ -51,7 +51,7 @@ class TopUpPackageController extends Controller
         $topUp->Unit = $request->Unit;
         $topUp->description = $request->description;
         $topUp->discount = $request->discount;
-        $topUp->best_seller = $request->best_seller;
+        $topUp->best_seller = $request->best_seller ?? 0;
         $topUp->save();
 
         return response()->json([
@@ -78,7 +78,7 @@ class TopUpPackageController extends Controller
      */
     public function update(Request $request, TopUpPackage $topUpPackage, $id)
     {
-        $request->valitedate([
+        $request->validate([
             'game_id' => 'required',
             'name' => 'required',
             'amount' => 'required',
@@ -95,7 +95,7 @@ class TopUpPackageController extends Controller
         $topUpPackage->fullprice = $request->fullprice;
         $topUpPackage->Unit = $request->Unit;
         $topUpPackage->discount = $request->discount;
-        $topUpPackage->best_seller = $request->best_seller;
+        $topUpPackage->best_seller = $request->has('best_seller') ? 1 : 0;
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('topUpPackage', 'public');

@@ -5,7 +5,7 @@
                 <TopUpPackageCreate />
             </div>
             <div class="card">
-                {{ topupPackage }}
+            
             <DataTable :value="topupPackage" :loading="loading" tableStyle="min-width: 50rem">
 
                 <Column  header="No">
@@ -29,8 +29,7 @@
                     <template #body="slotProps">
                         <div class="flex gap-2">
                             <TopUpPackageShow :topupPackage="slotProps.data" />
-                             
-                            <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
+                            <TopUpPackageEdit :topupPackage="slotProps.data" />
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
                            
                         </div>
@@ -49,6 +48,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import TopUpPackageCreate from '@/Admin/TopUpPackage/TopUpPackageCreate.vue'
 import TopUpPackageShow from '@/Admin/TopUpPackage/TopUpPackageShow.vue'
+import TopUpPackageEdit from '@/Admin/TopUpPackage/TopUpPackageEdit.vue'
+
 
 const loading = ref(true);
 
