@@ -31,7 +31,7 @@ class currencyController extends Controller
             'note' => 'nullable',
         ]);
 
-         $path = $request->file('image')->store('games', 'public');
+         $path = $request->file('image')->store('currency', 'public');
 
 
         $imageUrl = asset('storage/' . $path);
@@ -69,7 +69,7 @@ class currencyController extends Controller
         $currency->note = $request->note;
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('games', 'public');
+            $path = $request->file('image')->store('currency', 'public');
             // Generate public URL
             $imageUrl = asset('storage/' . $path);
             $currency->image = $imageUrl;
