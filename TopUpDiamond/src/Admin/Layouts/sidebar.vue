@@ -12,6 +12,33 @@
       <ul class="list-none p-2 m-0 flex-grow-1 overflow-auto">
         <li>
           <RouterLink
+            to="/admin/dashboard"
+            class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
+          >
+            <i class="pi pi-home mr-3"></i>
+            <span>{{ t("Dashboard") }}</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink
+            to="/admin/currency-list"
+            class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
+          >
+            <i class="pi pi-home mr-3"></i>
+            <span>{{ t("Currency") }}</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink
+            to="/admin/unit-list"
+            class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
+          >
+            <i class="pi pi-home mr-3"></i>
+            <span>{{ t("Unit") }}</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink
             to="/admin/coursellist"
             class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
           >

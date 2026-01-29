@@ -14,6 +14,9 @@ import TopUpPackageList from '@/Admin/TopUpPackage/TopUpPackageList.vue'
 import UserList from '@/Admin/User/UserList.vue'
 import Login from '@/Auth/Login.vue'
 import Register from '@/Auth/Register.vue'
+import CurrencyList from '@/Admin/Currency/CurrencyList.vue'
+import Dashboard from '@/Admin/Dashboard/Dashboard.vue'
+import UnitList from '@/Admin/Unit/UnitList.vue'
 
 
 const routes = [
@@ -86,6 +89,24 @@ const routes = [
     name: "UserList",
     component: UserList,
     meta: { title: 'User List' }
+  }
+  ,{
+    path: "/admin/currency-list",
+    name: "CurrencyList",
+    component: CurrencyList,
+    meta: { title: 'Currency List' }
+  }
+  ,{
+    path: "/admin/dashboard",
+    name: "Dashboard",
+    component: Dashboard,
+    meta: { title: 'Dashboard' }
+  }
+  ,{
+    path: "/admin/unit-list",
+    name: "UnitList",
+    component: UnitList,
+    meta: { title: 'UnitList' }
   }
   
   
