@@ -18,7 +18,7 @@ class gamesController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'name'=> 'required',
             'slug'=> 'required',
         ]);
@@ -56,11 +56,11 @@ class gamesController extends Controller
         ]);
     }
 
-   
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',  
+            'name' => 'required',
         ]);
 
         $game = Games::findOrFail($id);

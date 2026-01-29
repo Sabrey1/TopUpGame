@@ -8,11 +8,32 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TopUpPackageController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\CourselController;
+use App\Http\Controllers\currencyController;
+use App\Http\Controllers\unitController;
 
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+
+
+
+
+// currency
+Route::get('/currency', [currencyController::class, 'index'])->name('currency.index');
+Route::get('/currency/{id}', [currencyController::class, 'show'])->name('currency.show');
+Route::post('/currency', [currencyController::class, 'store'])->name('currency.store');
+Route::put('/currency/{id}', [currencyController::class, 'update'])->name('currency.update');
+Route::delete('/currency/{id}', [currencyController::class, 'destroy'])->name('currency.destroy');
+
+// Unit
+
+Route::get('/unit', [unitController::class, 'index'])->name('unit.index');
+Route::get('/unit/{id}', [unitController::class, 'show'])->name('unit.show');
+Route::post('/unit', [unitController::class, 'store'])->name('unit.store');
+Route::put('/unit/{id}', [unitController::class, 'update'])->name('unit.update');
+Route::delete('/unit/{id}', [unitController::class, 'destroy'])->name('unit.destroy');
 
 // game
 Route::get('/game',[GamesController::class,'index'])->name('game.index');

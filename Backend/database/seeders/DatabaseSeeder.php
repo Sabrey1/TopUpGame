@@ -30,13 +30,15 @@ class DatabaseSeeder extends Seeder
             PaymentTypeSeeder::class,
             OrdersSeeder::class,
             PaymentsSeeder::class,
-            PanelCourselSeeder::class
+            PanelCourselSeeder::class,
+            CurrencySeeder::class,
+            UnitSeeder::class,
         ]);
 
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        
+
     }
 }
