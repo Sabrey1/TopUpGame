@@ -10,73 +10,70 @@ class GamesSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('games')->insert([
+        $games = [
             [
-                'id' => 1,
                 'name' => 'Mobile Legends: Bang Bang',
                 'slug' => Str::slug('Mobile Legends: Bang Bang'),
+                'description' => 'Popular MOBA mobile game',
                 'image' => 'https://i.pinimg.com/474x/d9/a1/69/d9a169b14075e076a38698a0fd1e0b7e.jpg',
-                'is_popular' => 1,
-                'is_new' => 0,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => true,
+                'is_new' => false,
+                'is_active' => true,
             ],
             [
-                'id' => 2,
                 'name' => 'Honor of Kings',
                 'slug' => Str::slug('Honor of Kings'),
+                'description' => 'Top multiplayer online battle arena game',
                 'image' => 'https://cdn1.codashop.com/S/content/mobile/images/product-tiles-plain/Honor-of-Kings-Tile.png',
-                'is_popular' => 1,
-                'is_new' => 1,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => true,
+                'is_new' => true,
+                'is_active' => true,
             ],
             [
-                'id' => 3,
                 'name' => 'PUBG Mobile',
                 'slug' => Str::slug('PUBG Mobile'),
+                'description' => 'Popular battle royale mobile game',
                 'image' => 'https://cdn1.codashop.com/S/content/mobile/images/product-tiles/pubgm_tile_aug2024.jpg',
-                'is_popular' => 1,
-                'is_new' => 0,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => true,
+                'is_new' => false,
+                'is_active' => true,
             ],
             [
-                'id' => 4,
                 'name' => 'Garena Shells',
                 'slug' => Str::slug('Garena Shells'),
+                'description' => 'Virtual currency for Garena games',
                 'image' => 'https://cdn1.codashop.com/S/content/mobile/images/product-tiles/garena_shells_tile.jpg',
-                'is_popular' => 0,
-                'is_new' => 0,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => false,
+                'is_new' => false,
+                'is_active' => true,
             ],
             [
-                'id' => 5,
                 'name' => 'Zepeto',
                 'slug' => Str::slug('Zepeto'),
+                'description' => 'Social avatar app',
                 'image' => 'https://cdn1.codashop.com/S/content/mobile/images/product-tiles/zepeto_tile.png',
-                'is_popular' => 0,
-                'is_new' => 1,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => false,
+                'is_new' => true,
+                'is_active' => true,
             ],
             [
-                'id' => 6,
                 'name' => 'EA FC',
                 'slug' => Str::slug('EA FC'),
+                'description' => 'Football simulation game',
                 'image' => 'https://cdn1.codashop.com/S/content/mobile/images/product-tiles/EA_FC_Oct_2025.png',
-                'is_popular' => 1,
-                'is_new' => 1,
-                'is_active' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'is_popular' => true,
+                'is_new' => true,
+                'is_active' => true,
             ],
-        ]);
+        ];
+
+        // Add timestamps automatically
+        $games = array_map(function ($game) {
+            $game['created_at'] = now();
+            $game['updated_at'] = now();
+            return $game;
+        }, $games);
+
+        DB::table('games')->insert($games);
     }
 }

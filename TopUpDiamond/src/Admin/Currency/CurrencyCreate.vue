@@ -30,7 +30,7 @@
         <label class="font-semibold w-24">Symbol</label>
         <Select
           v-model="Currency.symbol"
-          :options="cities"
+          :options="symbols"
           optionLabel="name"
           optionValue="name"
           placeholder="Select a City"
@@ -68,12 +68,12 @@ const visible = ref(false)
 
  
 
-const cities = ref([
-    { name: 'New York' },
-    { name: 'Rome'},
-    { name: 'London' },
-    { name: 'Istanbul' },
-    { name: 'Paris', }
+const symbols = ref([
+    { name: '$' },
+    { name: '៛'},
+    { name: '฿' },
+    { name: '¥' },
+    { name: '€', }
 ]);
 
 const Currency = ref({

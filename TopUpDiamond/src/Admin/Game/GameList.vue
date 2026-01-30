@@ -20,7 +20,7 @@
                     </Column>
                     <Column field="description" header="Description">
                         <template #body="slotProps">
-                            {{ slotProps.data.description }}ssssssssssss
+                            {{ slotProps.data.description || '-' }}
                         </template>
                     </Column>
                     <Column field="is_active" header="Active" style="width: 300px">

@@ -23,7 +23,7 @@
                 </div>
                 <p class="m-0 text-center font-bold">{{ game.name }}</p>
                 <p class="m-0">Slug: {{ game.slug }}</p>
-                <p class="m-0">Description: {{ game.description }} sss</p>
+                <p class="m-0">Description: {{ game.description || '-' }}</p>
                 
                 <p class="m-0">Created: {{ dayjs(game.created_at).format('DD-MM-YYYY') }}</p>
                 <p class="m-0">Updated: {{ dayjs(game.updated_at).format('DD-MM-YYYY') }}</p>

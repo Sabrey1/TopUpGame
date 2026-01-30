@@ -26,6 +26,11 @@
         <InputText v-model="Game.slug" class="flex-auto" />
       </div>
 
+      <div class="flex items-center gap-4 mb-2">
+        <label class="font-semibold w-24">Description</label>
+        <InputText v-model="Game.description" class="flex-auto" />
+      </div>
+
       <div class="flex items-center gap-2">
         <Checkbox v-model="Game.is_popular" inputId="ingredient1" name="is_popular" value="is_popular"  />
         <label for="ingredient1"> Is Popular </label>
@@ -63,7 +68,7 @@ const Game = ref({
   is_popular:'',
   is_new:'',
   is_active:'',
-  // description: '',
+  description: '',
   image: null
 })
 
@@ -75,6 +80,7 @@ async function AddGame() {
   const formData = new FormData()
   formData.append('name', Game.value.name)
   formData.append('slug', Game.value.slug)
+  formData.append('description', Game.value.description)
   formData.append('is_popular', Game.value.is_popular ? 1 : 0)
   formData.append('is_new', Game.value.is_new ? 1 : 0)
   formData.append('is_active', Game.value.is_active ? 1 : 0)

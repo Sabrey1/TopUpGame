@@ -31,6 +31,7 @@ class gamesController extends Controller
         $game = new Games();
         $game->name = $request->name;
         $game->slug = $request->slug;
+        $game->description = $request->description;
         $game->image = $imageUrl;
         $game->is_popular = $request->is_popular ?? 0;
         $game->is_new = $request->is_new ?? 0;
@@ -67,6 +68,7 @@ class gamesController extends Controller
 
         $game->name = $request->name;
         $game->slug = $request->slug;
+        $game->description = $request->description;
         $game->is_popular = $request->is_popular ?? 0;
         $game->is_new = $request->is_new ?? 0;
         $game->is_active = $request->is_active ?? 0;

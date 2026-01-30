@@ -5,14 +5,14 @@
                 <h1 class="mt-0 text-center">Register</h1>
                 
                 <p class="m-0">Username</p>
-                <input type="text" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Username">
+                <input type="text" v-model="user.name" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Username">
                 <p class="m-0">Gmail</p>
-                <input type="text" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Gmail">
+                <input type="text" v-model="user.email" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Gmail">
                 <p class="m-0">Password</p>
-                <input type="password" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Password">
+                <input type="password" v-model="user.password" class="w-full h-2rem border-round border-none p-2" placeholder="Enter Password">
                 <br>
                 <br>
-                <button type="submit" class="w-full h-2rem bg-green-500 text-white  border-round border-none text-lg">Login</button>
+                <button  @click="AddUser" class="w-full h-2rem bg-green-500 text-white  border-round border-none text-lg">Login</button>
                 <a href="#" class="text-sm">Forgot Password</a>
                 <hr>
                 <button class="w-full border-round h-2rem bg-blue-400 border-none flex align-items-center justify-content-center">
@@ -30,5 +30,44 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'  // ✅ import router
+
+const router = useRouter() 
+
+
+const visible = ref(false)
+
+const user = ref({
+  name: '',
+  email:'',
+  password: '',
+})
+ 
+async function AddUser() {
+  const formData = new FormData()
+  formData.append('name', user.value.name)
+  formData.append('email', user.value.email)
+  formData.append('password', user.value.password)
+
+  try {
+    await axios.post(
+      'http://localhost:8000/api/register',
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    )
+
+    visible.value = false
+    // ✅ Redirect to another page, e.g., /users
+    router.push('/users')  
+
+  } catch (error) {
+    console.error('Error adding user:', error)
+    alert('Failed to add user')
+  }
+}
+
+
 
 </script>
