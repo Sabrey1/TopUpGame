@@ -25,7 +25,7 @@ import dayjs from 'dayjs'
 import Currency from '@/layouts/Currency.vue'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-
+import Select from 'primevue/select';
 import "@/services/app";
 
 const app = createApp(App)
@@ -52,6 +52,7 @@ app.component('Dialog', Dialog);
 app.component('Checkbox', Checkbox);
 app.component('DataTable', DataTable);
 app.component('Column', Column);
+app.component('Select', Select);
 
 app.use(i18n);
 window.t = (key) => i18n.global.t(key)

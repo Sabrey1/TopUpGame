@@ -21,9 +21,21 @@
       </div>
 
         <!-- SYMBOL -->
-      <div class="flex items-center gap-4 mb-4">
+      <!-- <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Symbol</label>
         <InputText v-model="Currency.symbol" class="flex-auto" />
+      </div> -->
+
+      <div class="card flex justify-center gap-4 mb-4">
+        <label class="font-semibold w-24">Symbol</label>
+        <Select
+          v-model="Currency.symbol"
+          :options="cities"
+          optionLabel="name"
+          optionValue="name"
+          placeholder="Select a City"
+          class="w-full md:w-56"
+        />
       </div>
 
         <!-- PRESITION -->
@@ -53,6 +65,16 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
+
+ 
+
+const cities = ref([
+    { name: 'New York' },
+    { name: 'Rome'},
+    { name: 'London' },
+    { name: 'Istanbul' },
+    { name: 'Paris', }
+]);
 
 const Currency = ref({
   name: '',
