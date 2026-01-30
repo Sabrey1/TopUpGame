@@ -104,7 +104,7 @@
 
       <div class="p-2 border-top-1 border-700">
         <RouterLink
-          to="/settings"
+          to="/admin/settings"
           class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
         >
           <i class="pi pi-cog mr-3"></i>

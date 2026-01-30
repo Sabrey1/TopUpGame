@@ -17,6 +17,7 @@ import Register from '@/Auth/Register.vue'
 import CurrencyList from '@/Admin/Currency/CurrencyList.vue'
 import Dashboard from '@/Admin/Dashboard/Dashboard.vue'
 import UnitList from '@/Admin/Unit/UnitList.vue'
+import Setting from '@/Admin/Setting/Setting.vue'
 
 
 const routes = [
@@ -47,6 +48,11 @@ const routes = [
     path: "/admin",
     name: "sidebar",
     component: sidebar,
+  }
+  ,{
+    path: "/admin/settings",
+    name: "Setting",
+    component: Setting,
   }
   ,{
     path: "/admin/coursellist",
