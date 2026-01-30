@@ -18,15 +18,17 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('image')->nullable();
             $table->integer('amount')->nullable();
-            $table->string('Unit')->nullable();
+            $table->unsignedBigInteger('unit_id')->nullable();
             $table->string('discount')->nullable();
             $table->decimal('price', 12, 2)->nullable();
             $table->decimal('fullprice', 12, 2)->nullable();
             $table->boolean('best_seller')->nullable();
-            $table->string('currency')->nullable();
+            $table->unsignedBigInteger('currency_id')->nullable();
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
+            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
     }
 

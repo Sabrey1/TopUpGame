@@ -17,8 +17,18 @@ class TopUpPackageController extends Controller
             'topup_packages.game_id',
             '=',
             'games.id'
+        )->leftJoin(
+            'currencies',
+            'topup_packages.currency_id',
+            '=',
+            'currencies.id',
+        )->leftJoin(
+            'units',
+            'topup_packages.unit_id',
+            '=',
+            'units.id'
         )
-        ->select('topup_packages.*', 'games.name as game_name')
+        ->select('topup_packages.*', 'games.name as game_name', 'currencies.name as currency_name', 'currencies.symbol as currency_symbol', 'units.name as unit_name')
         ->get();
         return response()->json($topUpPackages);
     }
@@ -30,8 +40,8 @@ class TopUpPackageController extends Controller
             'name' => 'required',
             'amount' => 'required',
             'fullprice' => 'required',
-            'currency' => 'required',
-            'Unit' => 'required',
+            'currency_id' => 'required',
+            'unit_id' => 'required',
 
         ]);
 
@@ -47,8 +57,8 @@ class TopUpPackageController extends Controller
         $topUp->amount = $request->amount;
         $topUp->image = $imageUrl;
         $topUp->fullprice = $request->fullprice;
-        $topUp->currency = $request->currency;
-        $topUp->Unit = $request->Unit;
+        $topUp->currency_id = $request->currency_id;
+        $topUp->unit_id = $request->unit_id;
         $topUp->description = $request->description;
         $topUp->discount = $request->discount;
         $topUp->best_seller = $request->best_seller ?? 0;
@@ -83,7 +93,7 @@ class TopUpPackageController extends Controller
             'name' => 'required',
             'amount' => 'required',
             'fullprice' => 'required',
-            'Unit' => 'required',
+            'unit_id' => 'required',
         ]);
 
         $topUpPackage = TopUpPackage::findOrFail($id);
@@ -93,7 +103,7 @@ class TopUpPackageController extends Controller
         $topUpPackage->game_id = $request->game_id;
         $topUpPackage->amount = $request->amount;
         $topUpPackage->fullprice = $request->fullprice;
-        $topUpPackage->Unit = $request->Unit;
+        $topUpPackage->unit_id = $request->unit_id;
         $topUpPackage->discount = $request->discount;
         $topUpPackage->best_seller = $request->has('best_seller') ? 1 : 0;
 

@@ -14,12 +14,12 @@ class TopUpPackage extends Model
         'description',
         'image',
         'amount',
-        'Unit',
+        'unit_id',
         'discount',
         'price',
         'fullprice',
         'best_seller',
-        'currency',
+        'currency_id',
     ];
 
     public function game()
@@ -30,5 +30,15 @@ class TopUpPackage extends Model
     public function payments()
     {
         return $this->hasMany(Payments::class, 'topup_package_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'Unit');
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'currency');
     }
 }

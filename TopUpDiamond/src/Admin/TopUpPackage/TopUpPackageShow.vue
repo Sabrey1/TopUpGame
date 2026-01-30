@@ -16,8 +16,8 @@
                 </div>
                 <p class="m-0 text-center font-bold">{{ topupPackage.name }}</p>
                 <p class="m-0">Game: {{ topupPackage.game_name }}</p>
-                 <p class="m-0" v-if="topupPackage.fullprice">Price: {{ topupPackage.fullprice }} {{ topupPackage.currency }}</p>
-                <p class="m-0">Amount: {{ topupPackage.amount }} {{ topupPackage.Unit }}</p>
+                <p class="m-0" v-if="topupPackage.fullprice">Price: {{ topupPackage.fullprice }} {{ topupPackage.currency_symbol }}</p>
+                <p class="m-0">Amount: {{ topupPackage.amount }} {{ topupPackage.unit_name }}</p>
                
                 <p class="m-0">Description: {{ topupPackage.description }}</p>
                 <p class="m-0">Created: {{ dayjs(topupPackage.created_at).format('DD-MM-YYYY') }}</p>

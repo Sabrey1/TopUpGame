@@ -22,7 +22,7 @@
                 </Column>
                 <Column field="amount" header="Total">
                 <template #body="slotProps">
-                    {{ slotProps.data.amount }} {{ slotProps.data.Unit }}
+                    {{ slotProps.data.amount }} {{ slotProps.data.unit_name }}
                 </template></Column>
                 <Column field="description" header="Description"></Column>
                 <Column header="Action">

@@ -25,15 +25,16 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
+            CurrencySeeder::class,
+            UnitSeeder::class,
+            UserSeeder::class,
             GamesSeeder::class,
             TopupPackagesSeeder::class,
             PaymentTypeSeeder::class,
             OrdersSeeder::class,
             PaymentsSeeder::class,
             PanelCourselSeeder::class,
-            CurrencySeeder::class,
-            UnitSeeder::class,
-            UserSeeder::class
+            
         ]);
 
         User::factory()->create([

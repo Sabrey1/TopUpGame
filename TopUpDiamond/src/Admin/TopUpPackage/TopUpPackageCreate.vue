@@ -9,17 +9,40 @@
         <label class="font-semibold w-24">Name</label>
         <InputText v-model="TopUpPackage.name" class="flex-auto" />
       </div>
-      <div class="flex items-center gap-4 mb-4">
+
+      <!-- <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Game</label>
         <InputText v-model="TopUpPackage.game_id" class="flex-auto" />
+      </div> -->
+
+      <div class="flex gap-4 mb-4">
+        <label class="font-semibold w-24 block mb-1">Game</label>
+        <Select
+          v-model="TopUpPackage.game_id"
+          :options="gameOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select a Game"
+          class="w-full md:w-56"
+        />
+
       </div>
+
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Full Price</label>
         <InputText v-model="TopUpPackage.fullprice" class="flex-auto" />
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Currency</label>
-        <InputText v-model="TopUpPackage.currency" class="flex-auto" />
+        <!-- <InputText v-model="TopUpPackage.currency" class="flex-auto" /> -->
+         <Select
+          v-model="TopUpPackage.currency_id"
+          :options="currencyOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select a Currency"
+          class="w-full md:w-56"
+        />
       </div>
 
       <!-- IMAGE -->
@@ -40,7 +63,15 @@
       <!-- Unit -->
       <div class="flex items-center gap-4 mb-2">
         <label class="font-semibold w-24">Unit</label>
-        <InputText v-model="TopUpPackage.Unit" class="flex-auto" />
+        <!-- <InputText v-model="TopUpPackage.Unit" class="flex-auto" /> -->
+          <Select
+          v-model="TopUpPackage.unit_id"
+          :options="unitOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select a Unit"
+          class="w-full md:w-56"
+        />
       </div>
        
       <div class="flex items-center gap-2">
@@ -70,24 +101,43 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted ,computed} from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
 
 const TopUpPackage = ref({
 
-  game_id: '',
+  game_id: null,
   name: '',
   amount: '',
-  currency: '',
-  Unit: '',
+  currency_id: null,
+  unit_id: '',
   fullprice: '',
   best_seller: false,
   description: '',
   discount: '',
   image: null
 })
+
+
+const games = ref([])
+const currency = ref([])
+const unit = ref([])
+
+const loadGames = async () => {
+  const res = await axios.get('http://localhost:8000/api/game')
+  games.value = res.data
+}
+const loadCurrency = async () => {
+  const res = await axios.get('http://127.0.0.1:8000/api/currency')
+  currency.value = res.data
+}
+const loadUnit = async () => {
+  const res = await axios.get('http://127.0.0.1:8000/api/unit')
+  unit.value = res.data
+}
+
 
 function onSelect(e) {
   TopUpPackage.value.image = e.files[0]
@@ -98,9 +148,9 @@ async function AddTopUpPackage() {
   formData.append('game_id', TopUpPackage.value.game_id)
   formData.append('name', TopUpPackage.value.name)
   formData.append('fullprice', TopUpPackage.value.fullprice)
-  formData.append('currency', TopUpPackage.value.currency)
+  formData.append('currency_id', TopUpPackage.value.currency_id)
   formData.append('amount', TopUpPackage.value.amount)
-  formData.append('Unit', TopUpPackage.value.Unit)
+  formData.append('unit_id', TopUpPackage.value.unit_id)
   formData.append('best_seller', TopUpPackage.value.best_seller ? 1 : 0)
   formData.append('discount', TopUpPackage.value.discount)
   formData.append('description', TopUpPackage.value.description)
@@ -115,5 +165,30 @@ async function AddTopUpPackage() {
 
   visible.value = false
 }
+
+onMounted(() => {
+  loadGames();
+  loadCurrency();
+  loadUnit();
+})
+
+const gameOptions = computed(() =>
+  games.value.map(game => ({
+    label: game.name,
+    value: game.id,
+  }))
+)
+const currencyOptions = computed(() =>
+  currency.value.map(currency => ({
+    label: currency.symbol,
+    value: currency.id,
+  }))
+)
+const unitOptions = computed(() =>
+  unit.value.map(unit => ({
+    label: unit.name,
+    value: unit.id,
+  }))
+)
 
 </script>
