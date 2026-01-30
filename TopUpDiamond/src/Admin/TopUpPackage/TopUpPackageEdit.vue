@@ -2,7 +2,7 @@
   <div>
     <Button icon="pi pi-pencil" label="Edit" @click="visible = true" />
 
-    <Dialog v-model:visible="visible" modal header="Edit Top Up Package" style="width:25rem">
+    <Dialog v-model:visible="visible" modal header="Edit Top Up Package" style="width:35rem">
       
       <!-- Name -->
       <div class="flex items-center gap-4 mb-4">
@@ -62,7 +62,7 @@
         <InputText v-model="TopUpPackage.discount" class="flex-auto" />
       </div>
       <!-- DESCRIPTION -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Description</label>
         <InputText v-model="TopUpPackage.description" class="flex-auto" />
       </div>

@@ -12,13 +12,18 @@
                     </template>
                 </Column>
                 <Column field="name" header="Name" style="width: 200px"></Column>
-                <Column  header="Image" style="width: 120px">
+                <Column  header="Image" style="width: 200px">
                     <template #body="slotProps">
                         <Avatar :image="slotProps.data.image" class="mr-2" size="xlarge" shape="circle" />
                     </template>
                 </Column>
-                <Column field="symbol" header="Symbol"></Column>
+                <Column field="symbol" header="Symbol" style="width: 200px"></Column>
                 <Column field="note" header="Note"></Column>
+                <Column field="created_at" header="Date">
+                    <template #body="slotProps">
+                        {{ dayjs(slotProps.data.created_at).format('MM/DD/YYYY') }}
+                    </template>
+                </Column>
                 
                 <Column header="Action" style="width: 320px;">
                     <template #body="slotProps">
@@ -42,6 +47,8 @@ import { ref, onMounted } from 'vue';
 import CurrencyCreate from '@/Admin/Currency/CurrencyCreate.vue'
 import CurrencyShow from '@/Admin/Currency/CurrencyShow.vue'
 import CurrencyEdit from '@/Admin/Currency/CurrencyEdit.vue'
+import dayjs from 'dayjs';
+
 const loading = ref(true);
 
 const currency = ref([]);

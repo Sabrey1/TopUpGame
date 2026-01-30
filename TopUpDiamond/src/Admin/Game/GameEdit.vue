@@ -34,7 +34,7 @@
       </div>
 
       <!-- Slug -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Slug</label>
         <InputText v-model="Game.slug" class="flex-auto" />
       </div>

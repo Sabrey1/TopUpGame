@@ -21,7 +21,7 @@
       </div>
 
       <!-- DESCRIPTION -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Description</label>
         <InputText v-model="Coursel.description" class="flex-auto" />
       </div>

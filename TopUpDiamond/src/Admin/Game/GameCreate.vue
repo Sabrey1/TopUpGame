@@ -21,7 +21,7 @@
       </div>
 
       <!-- slug -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-2">
         <label class="font-semibold w-24">Slug</label>
         <InputText v-model="Game.slug" class="flex-auto" />
       </div>
@@ -42,7 +42,7 @@
       </div>
 
       <!-- ACTIONS -->
-      <div class="flex justify-end gap-2">
+      <div class="flex justify-end gap-2 mt-4">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddGame" />
       </div>
