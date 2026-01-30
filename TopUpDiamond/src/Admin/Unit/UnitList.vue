@@ -13,7 +13,7 @@
                 </Column>
                 <Column field="name" header="Name" style="width: 200px"></Column>
                 <Column field="note" header="Note"></Column>
-                <Column field="note" header="Note">
+                <Column  header="Date">
                     <template #body="slotProps">
                         {{ dayjs(slotProps.data.created_at).format('MM/DD/YYYY') }}
                     </template>

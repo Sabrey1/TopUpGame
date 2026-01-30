@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             PanelCourselSeeder::class,
             CurrencySeeder::class,
             UnitSeeder::class,
+            UserSeeder::class
         ]);
 
         User::factory()->create([

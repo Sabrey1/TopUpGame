@@ -10,17 +10,25 @@ use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\CourselController;
 use App\Http\Controllers\currencyController;
 use App\Http\Controllers\unitController;
+use App\Http\Controllers\AuthController;
 
 
-Route::get('/user', function (Request $request) {
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+});
 
+Route::get('/user', [AuthController::class, 'index'])->name('index');
+Route::put('/user/{id}', [AuthController::class, 'update'])->name('update');
+Route::delete('/user/{id}', [AuthController::class, 'destroy'])->name('destroy');
 
 //Auth
-Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
-Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
 // currency

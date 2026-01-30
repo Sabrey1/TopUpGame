@@ -14,28 +14,47 @@ class AuthController extends Controller
         return response()->json($users);
     }
 
+    public function update($id, Request $request){
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+      
+
+        $user->save();
+
+        return response()->json($user);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return response()->json(['message' => 'User deleted successfully']);
+    }
+
     public function login(Request $request)
     {
-        // Validate the request
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required'
         ]);
 
-        // Attempt to authenticate the user
-        if (auth()->attempt($credentials)) {
-            // Authentication passed
-            $user = auth()->user();
-            $token = $user->createToken('auth_token')->plainTextToken;
+        $user = User::where('email', $request->email)->first();
 
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ]);
+                'message' => 'Invalid credentials'
+            ], 401);
         }
 
-        // Authentication failed
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+            'token_type' => 'Bearer'
+        ]);
     }
 
     public function logout(Request $request)
@@ -52,7 +71,7 @@ class AuthController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
 
         // Create the user
