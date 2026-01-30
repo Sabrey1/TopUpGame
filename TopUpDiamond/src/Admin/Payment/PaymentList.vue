@@ -23,8 +23,8 @@
                 </Column>
                 <Column field="status" header="Status">
                     <template #body="slotProps">
-                    <Chip :label="slotProps.data.status" :class="{'p-chip-success': slotProps.data.status === 'Completed', 'p-chip-warning': slotProps.data.status === 'Pending', 'p-chip-danger': slotProps.data.status === 'Failed'}"></Chip>
-                        </template> 
+                        <ComStatus :label="slotProps.data.status"></ComStatus>
+                    </template> 
                 </Column>
 
                 <Column header="Action">
@@ -54,6 +54,7 @@ import Button from 'primevue/button';
 import Chip from 'primevue/chip';
 
 import dayjs from 'dayjs';
+import ComStatus from '../../layouts/ComStatus.vue';
 
 
 const loading = ref(true);

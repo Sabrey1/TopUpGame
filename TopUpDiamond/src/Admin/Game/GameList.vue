@@ -4,7 +4,6 @@
             <div class="flex justify-content-end">
                 <GameCreate />
             </div>
-
             <div class="card">
                 <DataTable :value="game" :loading="loading" tableStyle="min-width: 50rem">
                     <Column  header="No" style="width: 80px">
@@ -25,8 +24,7 @@
                     </Column>
                     <Column field="is_active" header="Active" style="width: 300px">
                         <template #body="slotProps">
-                            <Chip>{{ slotProps.data.is_active ? 'Active' : 'Inactive' }}</Chip>
-                            
+                            <ComStatus :value="slotProps.data.is_active" trueLabel="Active" falseLabel="Inactive" />
                         </template>
                     </Column>
                     <Column header="Action" style="width: 320px;">

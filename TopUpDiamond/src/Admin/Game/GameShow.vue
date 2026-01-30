@@ -6,15 +6,13 @@
             
             <div>
                 <div class="flex gap-2 mb-3">
-                    <Chip>
-                        {{ game.is_active ? 'Active' : 'Inactive' }}
-                    </Chip>
-                    <Chip v-if="game.is_popular > 0">
-                        {{ game.is_popular ? 'Popular' : 'Not Popular' }}
-                    </Chip>
-                    <Chip v-if="game.is_new > 0">
-                        {{ game.is_new ? 'New' : 'Not New' }}
-                    </Chip>
+                     <ComStatus :value="game.is_active" trueLabel="Active" falseLabel="Inactive" />
+                     <div v-if="game.is_popular > 0">
+                        <ComStatus :value="game.is_popular" trueLabel="Popular" falseLabel="Not Popular" />
+                     </div>
+                     <div v-if="game.is_new > 0">
+                        <ComStatus :value="game.is_new" trueLabel="New" falseLabel="Not New" />
+                     </div>
                 </div>
                 
                 <!-- {{ game }} -->

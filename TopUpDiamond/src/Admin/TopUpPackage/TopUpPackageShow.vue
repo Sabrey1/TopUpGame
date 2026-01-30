@@ -4,12 +4,14 @@
         <Dialog v-model:visible="visible" modal header="View Coursel Detail" :style="{ width: '25rem' }">
             <div>
                 <div class="flex gap-2 mb-3">
-                    <Chip v-if="topupPackage.best_seller">
-                        {{ topupPackage.best_seller ? 'Best Seller' : '' }}
-                    </Chip>
-                    <Chip v-if="topupPackage.discount">
-                        {{ topupPackage.discount }}
-                    </Chip>
+                    <div v-if="topupPackage.best_seller">
+                        <ComStatus :value="topupPackage.best_seller" label="Best Seller" />
+                    </div>
+
+                    <div v-if="topupPackage.discount">
+                        <ComStatus :value="topupPackage.discount" field="discount" />
+                    </div>
+                    
                 </div>
                 <div class="flex justify-content-center mb-2">
                     <Avatar :image="topupPackage.image" class="mr-2" size="xlarge" shape="circle" />

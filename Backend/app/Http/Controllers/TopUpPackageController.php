@@ -95,6 +95,7 @@ class TopUpPackageController extends Controller
             'fullprice' => 'required',
             'unit_id' => 'required',
             'currency_id' => 'required',
+            'best_seller' => 'nullable',
         ]);
 
         $topUpPackage = TopUpPackage::findOrFail($id);
@@ -107,7 +108,7 @@ class TopUpPackageController extends Controller
         $topUpPackage->fullprice = $request->fullprice;
         $topUpPackage->unit_id = $request->unit_id;
         $topUpPackage->discount = $request->discount;
-        $topUpPackage->best_seller = $request->has('best_seller') ? 1 : 0;
+        $topUpPackage->best_seller = $request->best_seller ?? 0;
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('topUpPackage', 'public');
