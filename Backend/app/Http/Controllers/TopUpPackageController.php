@@ -94,12 +94,14 @@ class TopUpPackageController extends Controller
             'amount' => 'required',
             'fullprice' => 'required',
             'unit_id' => 'required',
+            'currency_id' => 'required',
         ]);
 
         $topUpPackage = TopUpPackage::findOrFail($id);
 
         $topUpPackage->name = $request->name;
         $topUpPackage->description = $request->description;
+        $topUpPackage->currency_id = $request->currency_id;
         $topUpPackage->game_id = $request->game_id;
         $topUpPackage->amount = $request->amount;
         $topUpPackage->fullprice = $request->fullprice;

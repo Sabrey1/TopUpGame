@@ -148,7 +148,7 @@ async function AddTopUpPackage() {
   formData.append('game_id', TopUpPackage.value.game_id)
   formData.append('name', TopUpPackage.value.name)
   formData.append('fullprice', TopUpPackage.value.fullprice)
-  formData.append('currency_id', TopUpPackage.value.currency_id)
+  formData.append('currency_id', TopUpPackage.value.currency)
   formData.append('amount', TopUpPackage.value.amount)
   formData.append('unit_id', TopUpPackage.value.unit_id)
   formData.append('best_seller', TopUpPackage.value.best_seller ? 1 : 0)
