@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Games;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+
 
 class gamesController extends Controller
 {
@@ -98,45 +101,51 @@ class gamesController extends Controller
         ]);
     }
 
-    public function checkUser(Request $request)
+   public function checkUser(Request $request)
 {
     $users = $request->all();
     $result = [];
 
-    // Mobile Legends (unofficial)
-    if (!empty($users['mobile_legends']['uid']) && !empty($users['mobile_legends']['zone'])) {
+    // ✅ Mobile Legends
+    if (
+        isset($users['mobile_legends']['uid']) &&
+        isset($users['mobile_legends']['zone'])
+    ) {
         try {
-            $mlRes = Http::get("https://api.isan.eu.org/nickname/ml", [
+            $mlRes = Http::get('https://api.isan.eu.org/nickname/ml', [
                 'id' => $users['mobile_legends']['uid'],
                 'zone' => $users['mobile_legends']['zone'],
             ]);
+
             $result['mobile_legends'] = $mlRes->json();
         } catch (\Exception $e) {
             $result['mobile_legends'] = null;
         }
     }
 
-    // PUBG (official API)
-    if (!empty($users['pubg']['nickname'])) {
+    // ✅ PUBG (safe)
+    if (isset($users['pubg']['nickname'])) {
         try {
             $pubgRes = Http::withHeaders([
                 'Authorization' => 'Bearer ' . env('PUBG_API_KEY'),
                 'Accept' => 'application/vnd.api+json'
-            ])->get("https://api.pubg.com/shards/steam/players", [
+            ])->get('https://api.pubg.com/shards/steam/players', [
                 'filter[playerNames]' => $users['pubg']['nickname']
             ]);
+
             $result['pubg'] = $pubgRes->json();
         } catch (\Exception $e) {
             $result['pubg'] = null;
         }
     }
 
-    // Free Fire (unofficial)
-    if (!empty($users['free_fire']['uid'])) {
+    // ✅ Free Fire (safe)
+    if (isset($users['free_fire']['uid'])) {
         try {
-            $ffRes = Http::get("https://api.ff.garena.com/player_info", [
+            $ffRes = Http::get('https://api.ff.garena.com/player_info', [
                 'uid' => $users['free_fire']['uid']
             ]);
+
             $result['free_fire'] = $ffRes->json();
         } catch (\Exception $e) {
             $result['free_fire'] = null;

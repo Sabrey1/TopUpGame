@@ -6,13 +6,13 @@
         </div>
         <div class="mt-8">
 
-            <h2 class="text-center">Popular Game</h2>
+            <h2 class="text-center">{{ t("Popular Game") }}</h2>
             <Card :games="popularGames"/> 
 
-            <h2 class="text-center">New Game</h2>
+            <h2 class="text-center">{{ t("New Game") }}</h2>
             <Card :games="newGames"/> 
 
-            <h2 class="text-center">Game</h2>
+            <h2 class="text-center">{{t("Game")}}</h2>
             <Card :games="data"/>
 
         </div>
@@ -28,6 +28,9 @@ import Promotions from '@/Promotions/Promotions.vue'
 import Card from '@/Home/components/Card.vue'
 import Footer from '@/layouts/Footer.vue'
 import axios from 'axios'
+
+
+const t = window.t
 
 const data = ref([])
 async function getData(){

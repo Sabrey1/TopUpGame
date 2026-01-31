@@ -47,11 +47,12 @@ Route::put('/unit/{id}', [unitController::class, 'update'])->name('unit.update')
 Route::delete('/unit/{id}', [unitController::class, 'destroy'])->name('unit.destroy');
 
 // game
-Route::post('/games/check-user', [gamesController::class, 'checkUser']);
+
 
 Route::get('/game',[GamesController::class,'index'])->name('game.index');
 Route::get('/game/{id}',[GamesController::class,'show'])->name('game.show');
 Route::post('/game',[GamesController::class,'store'])->name('game.store');
+Route::post('/games/check-user', [GamesController::class, 'checkUser']);
 Route::put('/game/{id}',[GamesController::class,'update'])->name('game.update');
 Route::delete('/game/{id}',[GamesController::class,'destroy'])->name('game.destroy');
 
