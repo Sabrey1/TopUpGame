@@ -97,4 +97,53 @@ class gamesController extends Controller
             'message' => 'Game deleted successfully',
         ]);
     }
+
+    public function checkUser(Request $request)
+{
+    $users = $request->all();
+    $result = [];
+
+    // Mobile Legends (unofficial)
+    if (!empty($users['mobile_legends']['uid']) && !empty($users['mobile_legends']['zone'])) {
+        try {
+            $mlRes = Http::get("https://api.isan.eu.org/nickname/ml", [
+                'id' => $users['mobile_legends']['uid'],
+                'zone' => $users['mobile_legends']['zone'],
+            ]);
+            $result['mobile_legends'] = $mlRes->json();
+        } catch (\Exception $e) {
+            $result['mobile_legends'] = null;
+        }
+    }
+
+    // PUBG (official API)
+    if (!empty($users['pubg']['nickname'])) {
+        try {
+            $pubgRes = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('PUBG_API_KEY'),
+                'Accept' => 'application/vnd.api+json'
+            ])->get("https://api.pubg.com/shards/steam/players", [
+                'filter[playerNames]' => $users['pubg']['nickname']
+            ]);
+            $result['pubg'] = $pubgRes->json();
+        } catch (\Exception $e) {
+            $result['pubg'] = null;
+        }
+    }
+
+    // Free Fire (unofficial)
+    if (!empty($users['free_fire']['uid'])) {
+        try {
+            $ffRes = Http::get("https://api.ff.garena.com/player_info", [
+                'uid' => $users['free_fire']['uid']
+            ]);
+            $result['free_fire'] = $ffRes->json();
+        } catch (\Exception $e) {
+            $result['free_fire'] = null;
+        }
+    }
+
+    return response()->json($result);
+}
+
 }
