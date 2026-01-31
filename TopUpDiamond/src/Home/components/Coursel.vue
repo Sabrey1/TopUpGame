@@ -147,7 +147,7 @@ onMounted(() => {
 <style scoped>
 .swiper {
   width: 100%;
-  height: 400px;
+  height: 500px;
   border-radius: 5px;
   overflow: hidden;
 }
