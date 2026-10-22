@@ -51,8 +51,8 @@ const selectPayment = (payment) => {
 }
 
 async function getData() {
-  const res = await axios.get(
-    "http://127.0.0.1:8000/api/payment_type"
+  const res = await app.getApi(
+    "payment_type"
   )
   if (res.data) {
     Payments.value = res.data

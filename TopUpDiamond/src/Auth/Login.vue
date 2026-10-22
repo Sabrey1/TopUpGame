@@ -5,14 +5,14 @@
       <form @submit.prevent="onLogin" class="flex flex-column gap-4">
 
         <!-- Title -->
-        <div class="text-center mb-2">
-          <h2 class="text-900 text-2xl font-semibold m-0">Login</h2>
-          <span class="text-600 text-sm">Welcome back</span>
+        <div class="text-center">
+          <h2 class="text-900 text-3xl font-semibold m-0">{{t("Login")}}</h2>
+          <span class="text-600 text-sm font-bold">{{t("Welcome back")}}</span>
         </div>
 
         <!-- Email -->
         <div class="flex flex-column gap-2">
-          <label class="text-700 font-medium">Email</label>
+          <label class="text-700 font-medium">{{t("Email")}}</label>
           <input
             type="email"
             v-model="user.email"
@@ -24,7 +24,7 @@
 
         <!-- Password -->
         <div class="flex flex-column gap-2">
-          <label class="text-700 font-medium">Password</label>
+          <label class="text-700 font-medium">{{t("Password")}}</label>
           <input
             type="password"
             v-model="user.password"
@@ -36,7 +36,7 @@
 
         <!-- Login Button -->
         <button type="submit" class="primary-btn bg-blue-500">
-          Login
+          {{t("Login")}}
         </button>
 
         <!-- Forgot -->
@@ -80,6 +80,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+
+const t = window.t
 
 const router = useRouter()
 

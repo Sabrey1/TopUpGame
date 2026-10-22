@@ -4,7 +4,7 @@
         <div class="mt-5">
             <Coursel/>
         </div>
-        <div class="mt-8">
+        <div class="mt-7">
 
             <h2 class="text-center">{{ t("Popular Game") }}</h2>
             <Card :games="popularGames"/> 
@@ -24,15 +24,12 @@
 import {ref,onMounted,computed} from 'vue'
 import Header from '@/layouts/Header.vue'
 import Coursel from '@/Home/components/Coursel.vue'
-import Promotions from '@/Promotions/Promotions.vue'
 import Card from '@/Home/components/Card.vue'
 import Footer from '@/layouts/Footer.vue'
-import axios from 'axios'
-
 
 const t = window.t
-
 const data = ref([])
+
 async function getData(){
     const res = await app.getApi('game')
     if(res.data){
@@ -41,7 +38,7 @@ async function getData(){
 }
 
 onMounted(()=>{
-getData()
+    getData()
 })
 
 const popularGames = computed(() =>

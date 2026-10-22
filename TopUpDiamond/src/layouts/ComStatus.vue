@@ -14,15 +14,15 @@ const props = defineProps({
     type: [Boolean, Number, String],
     required: true
   },
-  label: {   // optional display text override
+  label: {
     type: String,
     default: ''
   },
-  trueLabel: {  // optional label for boolean true/1
+  trueLabel: {
     type: String,
     default: 'Yes'
   },
-  falseLabel: { // optional label for boolean false/0
+  falseLabel: {
     type: String,
     default: 'No'
   }
@@ -30,10 +30,10 @@ const props = defineProps({
 
 // --- Display text inside the chip ---
 const displayLabel = computed(() => {
-  if(props.label) return props.label          // custom label passed
+  if(props.label) return props.label
   if(props.value === 1 || props.value === true) return props.trueLabel
   if(props.value === 0 || props.value === false) return props.falseLabel
-  return String(props.value)                  // for string statuses or numbers
+  return String(props.value)
 })
 
 // --- Background color based on value ---

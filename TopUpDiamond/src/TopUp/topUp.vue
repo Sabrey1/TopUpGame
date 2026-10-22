@@ -163,7 +163,7 @@ const selectPackage = (pkg) => {
 
 async function getPackagesByGame(id) {
   try {
-    const res = await axios.get('http://127.0.0.1:8000/api/topupPackage');
+    const res = await app.getApi('topupPackage');
     if (res.data) {
       
       const packages = res.data.filter(pkg => pkg.game_id == id);
