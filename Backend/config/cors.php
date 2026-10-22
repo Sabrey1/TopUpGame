@@ -12,7 +12,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173'], // your Vue (Vite) frontend
+    'allowed_origins' => ['http://localhost:5173', 'http://localhost:5174'], // your Vue (Vite) frontend
 
     'allowed_origins_patterns' => [],
 
