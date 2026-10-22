@@ -45,7 +45,6 @@
 <script setup>
 
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import TopUpPackageCreate from '@/Admin/TopUpPackage/TopUpPackageCreate.vue'
 import TopUpPackageShow from '@/Admin/TopUpPackage/TopUpPackageShow.vue'
 import TopUpPackageEdit from '@/Admin/TopUpPackage/TopUpPackageEdit.vue'
@@ -57,7 +56,7 @@ const topupPackage = ref([]);
 async function getData(){
      loading.value = true;
     
-    const res = await axios.get('http://localhost:8000/api/topupPackage');
+    const res = await app.getApi('topupPackage');
     if(res.data){
         topupPackage.value = res.data;
        
@@ -69,7 +68,7 @@ function onDelete(id){
     const onConform =  window.confirm('Are you sure you want to delete this item?');
     if(!onConform)return
 
-   const res = axios.delete(`http://localhost:8000/api/topupPackage/${id}`).then(res=>{
+   const res = app.deleteApi(`topupPackage/${id}`).then(res=>{
         getData();
     })
     if(res.data){

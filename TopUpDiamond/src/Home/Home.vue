@@ -34,7 +34,7 @@ const t = window.t
 
 const data = ref([])
 async function getData(){
-    const res = await axios.get('http://127.0.0.1:8000/api/game')
+    const res = await app.getApi('game')
     if(res.data){
         data.value = res.data
     }

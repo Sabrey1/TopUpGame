@@ -102,8 +102,8 @@ const checkUser = async () => {
   result.value = null
 
   try {
-    const res = await axios.post(
-      'http://127.0.0.1:8000/api/games/check-user',
+    const res = await app.postApi(
+      'games/check-user',
       {
         mobile_legends: {
           uid: uid.value,

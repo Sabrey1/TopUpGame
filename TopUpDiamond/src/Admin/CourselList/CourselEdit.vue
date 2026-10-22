@@ -107,7 +107,7 @@ function updateCoursel() {
   formData.append('description', Coursel.value.description || '')
   if (Coursel.value.image) formData.append('image', Coursel.value.image)
 
-  axios.post(`http://localhost:8000/api/panel_coursel/${Coursel.value.id}`, formData, {
+  app.postApi(`panel_coursel/${Coursel.value.id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then((response) => {
     const updated = response.data.coursel

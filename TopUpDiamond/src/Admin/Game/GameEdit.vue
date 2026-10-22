@@ -139,7 +139,7 @@ function updateGame() {
 
   if (Game.value.image) formData.append('image', Game.value.image)
 
-  axios.post(`http://localhost:8000/api/game/${Game.value.id}`, formData, {
+  app.postApi(`game/${Game.value.id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then((response) => {
     const updated = response.data.game

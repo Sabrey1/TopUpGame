@@ -47,7 +47,6 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Avatar from 'primevue/avatar';
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import Button from 'primevue/button';
 import GameCreate from '@/Admin/Game/GameCreate.vue'
 import GameShow from '@/Admin/Game/GameShow.vue'
@@ -59,27 +58,23 @@ const game = ref([]);
 async function getData(){
      loading.value = true;
     
-    const res = await axios.get('http://localhost:8000/api/game')
+    const res = await app.getApi('game')
     if(res.data){
         game.value = res.data;
-       
     }
      loading.value = false;
 }
-
-
 
 function OnDelete(id) {
     const onComfirm =  window.confirm('Are you sure you want to delete this item?');
     if(!onComfirm)return
 
-    axios.delete(`http://localhost:8000/api/game/${id}`).then(() => {
+    app.deleteApi(`game/${id}`).then(() => {
         getData();
     });
 }
 
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

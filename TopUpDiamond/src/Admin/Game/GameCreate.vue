@@ -86,8 +86,8 @@ async function AddGame() {
   formData.append('is_active', Game.value.is_active ? 1 : 0)
   formData.append('image', Game.value.image)
 
-  await axios.post(
-    'http://localhost:8000/api/game',
+  await app.postApi(
+    'game',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )

@@ -50,7 +50,6 @@ async function getData(){
     const res = await app.getApi('panel_coursel')
     if(res.data){
         coursels.value = res.data;
-        
     }
      loading.value = false;
 }

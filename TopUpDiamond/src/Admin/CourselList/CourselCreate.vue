@@ -38,7 +38,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
 
 const visible = ref(false)
 
@@ -58,8 +57,8 @@ async function AddCoursel() {
   formData.append('description', Coursel.value.description)
   formData.append('image', Coursel.value.image)
 
-  await axios.post(
-    'http://localhost:8000/api/panel_coursel',
+  await app.postApi(
+    'panel_coursel',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )

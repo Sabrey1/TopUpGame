@@ -120,24 +120,22 @@ const TopUpPackage = ref({
   image: null
 })
 
-
 const games = ref([])
 const currency = ref([])
 const unit = ref([])
 
 const loadGames = async () => {
-  const res = await axios.get('http://localhost:8000/api/game')
+  const res = await app.getApi('game')
   games.value = res.data
 }
 const loadCurrency = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/currency')
+  const res = await app.getApi('currency')
   currency.value = res.data
 }
 const loadUnit = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/unit')
+  const res = await app.getApi('unit')
   unit.value = res.data
 }
-
 
 function onSelect(e) {
   TopUpPackage.value.image = e.files[0]
@@ -156,8 +154,8 @@ async function AddTopUpPackage() {
   formData.append('description', TopUpPackage.value.description)
   formData.append('image', TopUpPackage.value.image)
 
-  await axios.post(
-    'http://localhost:8000/api/topupPackage',
+  await app.postApi(
+    'topupPackage',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
@@ -190,5 +188,4 @@ const unitOptions = computed(() =>
     value: unit.id,
   }))
 )
-
 </script>

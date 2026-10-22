@@ -5,13 +5,15 @@
     <Dialog v-model:visible="visible" modal header="Add Currency" style="width:25rem">
       
       <!-- NAME -->
-      <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24">Name</label>
-        <InputText v-model="Currency.name" class="flex-auto" />
+      <div class=" mb-3">
+        <div class="mb-2">
+          <label class="font-semibold w-24">Name</label>
+        </div>
+        <InputText v-model="Currency.name" class="flex-auto" fluid/>
       </div>
 
       <!-- IMAGE -->
-      <div class="mb-4">
+      <div class="mb-3">
         <FileUpload
           mode="basic"
           accept="image/*"
@@ -26,8 +28,11 @@
         <InputText v-model="Currency.symbol" class="flex-auto" />
       </div> -->
 
-      <div class="card flex justify-center gap-4 mb-4">
-        <label class="font-semibold w-24">Symbol</label>
+      <div class=" mb-3">
+        <div class="mb-2">
+          <label class="font-semibold w-24 ">Symbol</label>
+        </div>
+        
         <Select
           v-model="Currency.symbol"
           :options="symbols"
@@ -39,15 +44,21 @@
       </div>
 
         <!-- PRESITION -->
-      <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24">Presition</label>
-        <InputText v-model="Currency.presition" class="flex-auto" />
+      <div class=" mb-3">
+        <div class="mb-2">
+          <label class="font-semibold w-24">Presition</label>
+        </div>
+        
+        <InputText v-model="Currency.presition" class="flex-auto" fluid />
       </div>
 
-      <!-- DESCRIPTION -->
-      <div class="flex items-center gap-4 mb-8">
-        <label class="font-semibold w-24">Note</label>
-        <InputText v-model="Currency.note" class="flex-auto" />
+      <!-- Note -->
+      <div class="mb-4">
+        <div class="mb-2">
+            <label class="font-semibold w-24">Note</label>
+        </div>
+        
+        <InputText v-model="Currency.note" class="flex-auto" fluid />
       </div>
 
       <!-- ACTIONS -->
@@ -65,8 +76,6 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
-
- 
 
 const symbols = ref([
     { name: '$' },
@@ -96,8 +105,8 @@ async function AddCurrency() {
   formData.append('presition', Currency.value.presition)
   formData.append('image', Currency.value.image)
 
-  await axios.post(
-    'http://localhost:8000/api/currency',
+  await app.postApi(
+    'currency',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )

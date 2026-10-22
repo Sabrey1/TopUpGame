@@ -132,7 +132,7 @@ const modules = [Autoplay, Pagination, Navigation];
 
 async function getSlides() {
   try {
-    const res = await axios.get('http://127.0.0.1:8000/api/panel_coursel');
+    const res = await app.getApi('panel_coursel');
     if (res.data) slides.value = res.data;
   } catch (error) {
     console.error('Error fetching slides:', error);

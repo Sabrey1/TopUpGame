@@ -42,7 +42,7 @@ const route = useRoute()
 const games = ref([])
 
 onMounted(()=>{
-    axios.get('http://127.0.0.1:8000/api/game')
+    app.getApi('game')
       .then(response => {
         games.value = response.data;
       })

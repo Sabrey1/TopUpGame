@@ -51,7 +51,7 @@ const payment_type = ref([]);
 
 async function getData(){
      loading.value = true;
-    const res = await axios.get('http://localhost:8000/api/payment_type');
+    const res = await app.getApi('payment_type');
     if(res.data){
         payment_type.value = res.data; 
     }
@@ -62,7 +62,7 @@ function OnDelete(id) {
     const onComfirm =  window.confirm('Are you sure you want to delete this item?');
     if(!onComfirm)return
 
-    const res = axios.delete(`http://localhost:8000/api/payment_type/${id}`).then(res=>{
+    const res = app.deleteApi(`payment_type/${id}`).then(res=>{
         getData();
     })
     if(res.data){

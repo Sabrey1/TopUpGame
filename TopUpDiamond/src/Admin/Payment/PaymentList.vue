@@ -47,23 +47,18 @@
 <script setup>
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import Avatar from 'primevue/avatar';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Button from 'primevue/button';
-import Chip from 'primevue/chip';
-
-import dayjs from 'dayjs';
 import ComStatus from '../../layouts/ComStatus.vue';
 
 
 const loading = ref(true);
-
 const payments = ref([]);
 async function getData(){
      loading.value = true;
     
-    const res = await axios.get('http://localhost:8000/api/payments');
+    const res = await app.getApi('payments');
     if(res.data){
         payments.value = res.data;
        

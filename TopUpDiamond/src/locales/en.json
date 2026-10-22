@@ -1,4 +1,18 @@
 {
   "hello": "Hello",
-  "welcome": "Welcome to our app"
+  "welcome": "Welcome to our app",
+  "Payments":"Payments",
+  "Oct":"Oct",
+  "User List":"User List",
+  "Dashboard":"Dashboard",
+  "Currency":"Currency",
+  "PaymentType":"PaymentType",
+  "User":"User",
+  "Unit":"Unit",
+  "Coursel":"Coursel",
+  "Game":"Game",
+  "Logout":"Logout",
+  "Top Up Package":"Top Up Package",
+  "Settings":"Settings",
+  "Thursday":"Thursday"
 }

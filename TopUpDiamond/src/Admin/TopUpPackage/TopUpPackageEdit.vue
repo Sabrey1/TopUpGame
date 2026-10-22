@@ -137,15 +137,15 @@ const currency = ref([])
 const unit = ref([])
 
 const loadGames = async () => {
-  const res = await axios.get('http://localhost:8000/api/game')
+  const res = await app.getApi('game')
   games.value = res.data
 }
 const loadCurrency = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/currency')
+  const res = await app.getApi('currency')
   currency.value = res.data
 }
 const loadUnit = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/unit')
+  const res = await app.getApi('unit')
   unit.value = res.data
 }
 
@@ -214,8 +214,8 @@ async function updateTopUpPackage() {
   if (TopUpPackage.value.image) formData.append('image', TopUpPackage.value.image)
 
   try {
-    await axios.post(
-      `http://localhost:8000/api/topupPackage/${TopUpPackage.value.id}`,
+    await app.postApi(
+      `topupPackage/${TopUpPackage.value.id}`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
