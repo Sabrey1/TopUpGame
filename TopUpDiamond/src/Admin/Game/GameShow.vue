@@ -1,9 +1,7 @@
 <template>
     <div>
-       
         <Button icon="pi pi-eye" label="View" class="p-button-warning" @click="visible = true" ></Button>
         <Dialog v-model:visible="visible" modal header="View game Detail" :style="{ width: '25rem' }">
-            
             <div>
                 <div class="flex gap-2 mb-3">
                      <ComStatus :value="game.is_active" trueLabel="Active" falseLabel="Inactive" />
@@ -41,10 +39,7 @@ import Dialog from 'primevue/dialog';
 import dayjs from 'dayjs';
 
 const visible = ref(false);
-
 const prop = defineProps({
     game: Object
 })
-
-
 </script>

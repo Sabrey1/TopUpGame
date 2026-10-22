@@ -1,16 +1,13 @@
 <template>
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Add Coursel" style="width:25rem">
-      
-      <!-- TITLE -->
+
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Title</label>
         <InputText v-model="Coursel.title" class="flex-auto" />
       </div>
 
-      <!-- IMAGE -->
       <div class="mb-4">
         <FileUpload
           mode="basic"
@@ -20,18 +17,15 @@
         />
       </div>
 
-      <!-- DESCRIPTION -->
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Description</label>
         <InputText v-model="Coursel.description" class="flex-auto" />
       </div>
 
-      <!-- ACTIONS -->
       <div class="flex justify-end gap-2">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddCoursel" />
       </div>
-
     </Dialog>
   </div>
 </template>
@@ -40,7 +34,6 @@
 import { ref } from 'vue'
 
 const visible = ref(false)
-
 const Coursel = ref({
   title: '',
   description: '',
@@ -63,7 +56,6 @@ async function AddCoursel() {
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 </script>

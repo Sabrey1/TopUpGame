@@ -5,7 +5,6 @@
             <Coursel/>
         </div>
         <div class="mt-7">
-
             <h2 class="text-center">{{ t("Popular Game") }}</h2>
             <Card :games="popularGames"/> 
 
@@ -14,7 +13,6 @@
 
             <h2 class="text-center">{{t("Game")}}</h2>
             <Card :games="data"/>
-
         </div>
     </div>
     <Footer/>

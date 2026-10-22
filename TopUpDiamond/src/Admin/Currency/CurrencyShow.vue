@@ -25,10 +25,7 @@ import { ref } from 'vue';
 import dayjs from 'dayjs';
 
 const visible = ref(false);
-
 const prop = defineProps({
     currency: Object
 })
-
-
 </script>

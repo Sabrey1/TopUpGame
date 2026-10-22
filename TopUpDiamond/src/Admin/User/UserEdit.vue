@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-pencil" label="Edit" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Edit User" style="width:25rem">
       
       <!-- NAME -->
@@ -16,14 +15,11 @@
         <InputText v-model="User.email" class="flex-auto" />
       </div>
 
-     
-
       <!-- ACTIONS -->
       <div class="flex justify-end gap-2">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="updateUser" />
       </div>
-
     </Dialog>
   </div>
 </template>
@@ -33,7 +29,6 @@ import { ref, watch } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
-
 const props = defineProps({
   user: Object
 })
@@ -41,8 +36,6 @@ const props = defineProps({
 const User = ref({
   name: '',
   email: '',
-  
- 
 })
 // Sync with prop
 watch(
@@ -52,8 +45,6 @@ watch(
       User.value.id = newVal.id
       User.value.name = newVal.name
       User.value.email = newVal.email
-       
-
     }
   },
   { immediate: true }
@@ -63,18 +54,16 @@ function openDialog() {
   visible.value = true
 }
  
-
 // Update unit
 function updateUser() {
   if (!User.value.id) return
 
   const formData = new FormData()
-  formData.append('_method', 'PUT')  // Spoof PUT for Laravel
+  formData.append('_method', 'PUT')
   formData.append('name', User.value.name || '')
   formData.append('email', User.value.email || '')
   
-
-  axios.post(`http://localhost:8000/api/user/${User.value.id}`, formData, {
+  app.postApi(`user/${User.value.id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then((response) => {
     const updated = response.data
@@ -83,7 +72,6 @@ function updateUser() {
      
     window.location.reload()
     visible.value = false
-    
   })
 }
 </script>

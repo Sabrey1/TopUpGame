@@ -22,12 +22,6 @@
         />
       </div>
 
-        <!-- SYMBOL -->
-      <!-- <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24">Symbol</label>
-        <InputText v-model="Currency.symbol" class="flex-auto" />
-      </div> -->
-
       <div class=" mb-3">
         <div class="mb-2">
           <label class="font-semibold w-24 ">Symbol</label>
@@ -66,17 +60,13 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddCurrency" />
       </div>
-
     </Dialog>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
-
 const visible = ref(false)
-
 const symbols = ref([
     { name: '$' },
     { name: '៛'},
@@ -111,7 +101,6 @@ async function AddCurrency() {
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 </script>

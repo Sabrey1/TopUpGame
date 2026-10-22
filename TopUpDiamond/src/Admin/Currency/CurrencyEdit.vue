@@ -1,16 +1,12 @@
 <template>
   <div>
     <Button icon="pi pi-pencil" label="Edit" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Edit Currency" style="width:25rem">
-      
-      
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Name</label>
         <InputText v-model="Currency.name" class="flex-auto" />
       </div>
 
-      
       <div class="mb-4">
         <FileUpload
           mode="basic"
@@ -21,7 +17,6 @@
         <img v-if="Currency.imagePreview" :src="Currency.imagePreview" class="mt-2 w-20 h-20 object-cover" />
       </div>
 
-      
       <div class="card flex justify-center gap-4 mb-4">
         <label class="font-semibold w-24">Symbol</label>
         <Select
@@ -34,24 +29,20 @@
         />
       </div>
 
-     
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Presition</label>
         <InputText v-model="Currency.presition" class="flex-auto" />
       </div>
 
-     
       <div class="flex items-center gap-4 mb-8">
         <label class="font-semibold w-24">Note</label>
         <InputText v-model="Currency.note" class="flex-auto" />
       </div>
 
-      
       <div class="flex justify-end gap-2">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="updateCurrency" />
       </div>
-
     </Dialog>
   </div>
 </template>
@@ -61,7 +52,6 @@ import { ref, watch, computed } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
- 
 const symbols = ref([
     { name: '$' },
     { name: '៛'},
@@ -69,12 +59,10 @@ const symbols = ref([
     { name: '¥' },
     { name: '€', }
 ]);
-
  
 const props = defineProps({
   currency: Object
 })
-
  
 const Currency = ref({
   id: null,
@@ -129,7 +117,7 @@ function updateCurrency() {
   formData.append('presition', Currency.value.presition || '')
   if (Currency.value.image) formData.append('image', Currency.value.image)
 
-  axios.post(`http://localhost:8000/api/currency/${Currency.value.id}`, formData, {
+  app.postApi(`currency/${Currency.value.id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then((response) => {
     const updated = response.data

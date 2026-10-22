@@ -39,12 +39,9 @@
 </template>
 <script setup>
 import { ref, onMounted } from "vue"
-import axios from "axios"
-
 const emit = defineEmits(['payment-selected'])
 const Payments = ref([])
 const selectedPayment = ref(null)
-
 const selectPayment = (payment) => {
   selectedPayment.value = payment.id
    emit('payment-selected', payment)

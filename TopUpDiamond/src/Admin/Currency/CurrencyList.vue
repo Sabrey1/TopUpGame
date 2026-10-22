@@ -31,13 +31,11 @@
                             <CurrencyShow :currency="slotProps.data" />
                             <CurrencyEdit :currency="slotProps.data" />
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+        </div>
         </div>
     </sidebar>
 </template>
@@ -50,17 +48,15 @@ import CurrencyEdit from '@/Admin/Currency/CurrencyEdit.vue'
 import dayjs from 'dayjs';
 
 const loading = ref(true);
-
 const currency = ref([]);
 async function getData(){
-     loading.value = true;
+    loading.value = true;
     
     const res = await app.getApi('currency')
     if(res.data){
         currency.value = res.data;
-        
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function onDelete(id){
@@ -75,10 +71,8 @@ function onDelete(id){
     }
 }
 
-
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>
 

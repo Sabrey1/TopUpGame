@@ -25,13 +25,11 @@
                             <Button icon="pi pi-eye" label="View" class="p-button-warning"></Button>
                             <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+            </div>
         </div>
     </sidebar>
 </template>
@@ -50,16 +48,14 @@ const order = ref([]);
 async function getData(){
      loading.value = true;
     
-    const res = await axios.get('http://localhost:8000/api/order')
+    const res = await app.getApi('order')
     if(res.data){
         order.value = res.data;
-       
     }
      loading.value = false;
 }
 
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

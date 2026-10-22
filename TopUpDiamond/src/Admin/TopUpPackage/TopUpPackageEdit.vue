@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-pencil" label="Edit" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Edit Top Up Package" style="width:35rem">
 
       <!-- Name -->
@@ -108,14 +107,11 @@
 
 <script setup>
 import { ref, watch, onMounted, computed } from 'vue'
-import axios from 'axios'
 
 const visible = ref(false)
-
 const props = defineProps({
   topupPackage: Object
 })
-
 const TopUpPackage = ref({
   id: null,
   game_id: null,
@@ -131,11 +127,9 @@ const TopUpPackage = ref({
   imagePreview: null
 })
 
-// Options
 const games = ref([])
 const currency = ref([])
 const unit = ref([])
-
 const loadGames = async () => {
   const res = await app.getApi('game')
   games.value = res.data

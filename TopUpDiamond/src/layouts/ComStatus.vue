@@ -28,7 +28,6 @@ const props = defineProps({
   }
 })
 
-// --- Display text inside the chip ---
 const displayLabel = computed(() => {
   if(props.label) return props.label
   if(props.value === 1 || props.value === true) return props.trueLabel
@@ -36,9 +35,7 @@ const displayLabel = computed(() => {
   return String(props.value)
 })
 
-// --- Background color based on value ---
 const chipClass = computed(() => {
-  // Map string statuses to colors
   const statusColors = {
     Paid: 'bg-green-600 text-white font-bold',
     Completed: 'bg-green-600 text-white font-bold',
@@ -51,11 +48,9 @@ const chipClass = computed(() => {
     failed: 'bg-red-700 text-white font-bold',
   }
 
-  // Boolean fallback
   if(props.value === 1 || props.value === true) return 'bg-green-600 text-white font-bold'
   if(props.value === 0 || props.value === false) return 'bg-red-500 text-white font-bold'
 
-  // Use string mapping or fallback gray
   return statusColors[props.value] || 'bg-gray-300 text-black font-bold'
 })
 </script>

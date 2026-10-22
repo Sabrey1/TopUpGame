@@ -33,13 +33,11 @@
                             <Button icon="pi pi-eye" label="View" class="p-button-warning"></Button>
                             <Button icon="pi pi-pencil" label="Edit" class="p-button-warning"></Button>
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+        </div>
         </div>
     </sidebar>
 </template>
@@ -48,26 +46,22 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import Button from 'primevue/button';
 import ComStatus from '../../layouts/ComStatus.vue';
-
 
 const loading = ref(true);
 const payments = ref([]);
 async function getData(){
-     loading.value = true;
+    loading.value = true;
     
     const res = await app.getApi('payments');
     if(res.data){
         payments.value = res.data;
-       
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

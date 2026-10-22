@@ -53,8 +53,8 @@ import GameShow from '@/Admin/Game/GameShow.vue'
 import GameEdit from '@/Admin/Game/GameEdit.vue'
 
 const loading = ref(true);
-
 const game = ref([]);
+
 async function getData(){
      loading.value = true;
     

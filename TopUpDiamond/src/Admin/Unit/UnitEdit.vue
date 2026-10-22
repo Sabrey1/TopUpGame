@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-pencil" label="Edit" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Edit Unit" style="width:25rem">
       
       <!-- NAME -->
@@ -27,18 +26,14 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import axios from 'axios'
 
 const visible = ref(false)
-
 const props = defineProps({
   unit: Object
 })
-
 const Unit = ref({
   name: '',
   note: '',
- 
 })
 // Sync with prop
 watch(
@@ -48,7 +43,6 @@ watch(
       Unit.value.id = newVal.id
       Unit.value.name = newVal.name
       Unit.value.note = newVal.note
-
     }
   },
   { immediate: true }
@@ -57,7 +51,6 @@ watch(
 function openDialog() {
   visible.value = true
 }
- 
 
 // Update unit
 function updateUnit() {
@@ -76,7 +69,6 @@ function updateUnit() {
     Unit.value.note = updated.note
     window.location.reload()
     visible.value = false
-    
   })
 }
 </script>

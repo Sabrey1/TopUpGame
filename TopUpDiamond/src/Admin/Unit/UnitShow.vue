@@ -3,7 +3,6 @@
         <Button icon="pi pi-eye" label="View" class="p-button-warning" @click="visible = true" ></Button>
         <Dialog v-model:visible="visible" modal header="View Unit Detail" :style="{ width: '25rem' }">
             <div>
-                
                 <p class="m-0 text-center font-bold">{{ unit.name }}</p>
                 <p class="m-0">Description: {{ unit.note }}</p>
                 <p class="m-0">Created: {{ dayjs(unit.created_at).format('DD-MM-YYYY') }}</p>
@@ -21,10 +20,7 @@ import { ref } from 'vue';
 import dayjs from 'dayjs';
 
 const visible = ref(false);
-
 const prop = defineProps({
     unit: Object
 })
-
-
 </script>

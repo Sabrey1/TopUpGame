@@ -55,15 +55,6 @@
             <span>{{ t("Game") }}</span>
           </RouterLink>
         </li>
-        <!-- <li>
-          <RouterLink
-            to="/admin/order-list"
-            class="flex align-items-center p-3 border-round hover:surface-700 text-white no-underline"
-          >
-            <i class="pi pi-home mr-3"></i>
-            <span>{{ t("Orders") }}</span>
-          </RouterLink>
-        </li> -->
         <li>
           <RouterLink
             to="/admin/payment-list"
@@ -125,7 +116,6 @@
       class="flex-1 min-h-screen content"
       :style="{ marginLeft: showSidebar && visible ? '16rem' : '0' }"
     >
-
       <div v-if="showSidebar" class="top-bar surface-0 p-2 shadow-1 flex align-items-center justify-content-between">
         <div class="flex align-items-center">
           <Button icon="pi pi-bars" class="p-button-text" @click="toggle" />
@@ -136,7 +126,6 @@
           <TimeRun />
         </div>
       </div>
-
       <div class="p-3">
         <slot></slot>
       </div>
@@ -147,18 +136,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-
 import Button from 'primevue/button'
 import TimeRun from "@/Admin/Layouts/TimeRun.vue"
  
-
 const route = useRoute()
 const t = window.t
-
 const visible = ref(true)
-
 const showSidebar = computed(() => !route.meta.hideSidebar)
-
 const pageTitle = computed(() => route.meta.title ? t(route.meta.title) : '')
 
 const toggle = () => {
@@ -172,8 +156,7 @@ const handleLogout = (event) => {
   // Clear saved credentials
   localStorage.removeItem('user_info');
   localStorage.removeItem('auth_token');
-  
-  // Navigate to login
+
   router.push('/login');
 };
 </script>

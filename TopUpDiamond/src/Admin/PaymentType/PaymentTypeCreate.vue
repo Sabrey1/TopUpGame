@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Add Payment Type" style="width:25rem">
       
       <!-- Name -->
@@ -31,7 +30,6 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddPaymentType" />
       </div>
-
     </Dialog>
   </div>
 </template>
@@ -41,7 +39,6 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
-
 const PaymentType = ref({
   name: '',
   description: '',
@@ -58,13 +55,12 @@ async function AddPaymentType() {
   formData.append('description', PaymentType.value.description)
   formData.append('image', PaymentType.value.image)
 
-  await axios.post(
-    'http://localhost:8000/api/payment_type',
+  await app.postApi(
+    'payment_type',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 </script>

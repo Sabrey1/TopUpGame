@@ -1,19 +1,12 @@
 <template>
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Add Top Up Package" style="width:35rem">
-      
       <!-- Name -->
       <div class="flex items-center gap-4 mb-4">
         <label class="font-semibold w-24">Name</label>
         <InputText v-model="TopUpPackage.name" class="flex-auto" />
       </div>
-
-      <!-- <div class="flex items-center gap-4 mb-4">
-        <label class="font-semibold w-24">Game</label>
-        <InputText v-model="TopUpPackage.game_id" class="flex-auto" />
-      </div> -->
 
       <div class="flex gap-4 mb-4">
         <label class="font-semibold w-24 block mb-1">Game</label>
@@ -95,19 +88,15 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddTopUpPackage" />
       </div>
-
     </Dialog>
   </div>
 </template>
 
 <script setup>
 import { ref,onMounted ,computed} from 'vue'
-import axios from 'axios'
 
 const visible = ref(false)
-
 const TopUpPackage = ref({
-
   game_id: null,
   name: '',
   amount: '',
@@ -119,11 +108,9 @@ const TopUpPackage = ref({
   discount: '',
   image: null
 })
-
 const games = ref([])
 const currency = ref([])
 const unit = ref([])
-
 const loadGames = async () => {
   const res = await app.getApi('game')
   games.value = res.data
@@ -160,7 +147,6 @@ async function AddTopUpPackage() {
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 

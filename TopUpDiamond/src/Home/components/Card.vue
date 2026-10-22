@@ -29,7 +29,6 @@
               </span>
             </div>
           </template>
-
           <template #content>
             <p class="text-center font-bold m-0 p-2">{{ game.name }}</p>
           </template>
@@ -40,17 +39,17 @@
 </template>
 
 <script setup>
-defineProps({
-  games: {
-    type: Array,
-    required: true
-  }
-})
+  defineProps({
+    games: {
+      type: Array,
+      required: true
+    }
+  })
 </script>
 
 <style scoped>
-.p-card-body {
-  padding: 0;
-  margin: 0;
-}
+  .p-card-body {
+    padding: 0;
+    margin: 0;
+  }
 </style>

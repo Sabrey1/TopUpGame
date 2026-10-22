@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Add User" style="width:25rem">
       
       <!-- NAME -->
@@ -26,7 +25,6 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddUser" />
       </div>
-
     </Dialog>
   </div>
 </template>
@@ -36,7 +34,6 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
-
 const user = ref({
   name: '',
   email:'',
@@ -49,14 +46,12 @@ async function AddUser() {
   formData.append('email', user.value.email)
   formData.append('password', user.value.password)
   
-
-  await axios.post(
-    'http://localhost:8000/api/register',
+  await app.postApi(
+    'register',
     formData,
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 </script>

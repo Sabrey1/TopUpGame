@@ -31,37 +31,32 @@
                             <TopUpPackageShow :topupPackage="slotProps.data" />
                             <TopUpPackageEdit :topupPackage="slotProps.data" />
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+        </div>
         </div>
     </sidebar>
 </template>
 
 <script setup>
-
 import { ref, onMounted } from 'vue';
 import TopUpPackageCreate from '@/Admin/TopUpPackage/TopUpPackageCreate.vue'
 import TopUpPackageShow from '@/Admin/TopUpPackage/TopUpPackageShow.vue'
 import TopUpPackageEdit from '@/Admin/TopUpPackage/TopUpPackageEdit.vue'
 
-
 const loading = ref(true);
-
 const topupPackage = ref([]);
 async function getData(){
-     loading.value = true;
+    loading.value = true;
     
     const res = await app.getApi('topupPackage');
     if(res.data){
         topupPackage.value = res.data;
        
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function onDelete(id){
@@ -76,9 +71,7 @@ function onDelete(id){
     }
 }
 
-
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

@@ -1,22 +1,3 @@
-<!-- <template>
-  <select v-model="currentLang" @change="changeLang(currentLang)">
-    <option value="en">English</option>
-    <option value="kh">Khmer</option>
-  </select>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import { getItem } from '@/services/storage-service';
-
-const t = window.t;
-const changeLang = window.changeLang;
-
-// ✅ load saved language
-const currentLang = ref(getItem('lang') || 'en');
-</script> -->
-
-
 <template>
   <div class="lang-selector-container">
     <!-- Trigger Button -->
@@ -58,7 +39,6 @@ const currentLang = ref(getItem('lang') || 'en');
 import { ref, computed } from 'vue'
 import { getItem } from '@/services/storage-service'
 
-// PNG imports
 import EnFlag from '@/assets/flags/enFlag.png'
 import KhFlag from '@/assets/flags/khFlag.png'
 

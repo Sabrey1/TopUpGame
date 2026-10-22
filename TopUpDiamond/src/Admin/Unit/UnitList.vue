@@ -25,13 +25,11 @@
                             <UnitShow :unit="slotProps.data" />
                             <UnitEdit :unit="slotProps.data" />
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+        </div>
         </div>
     </sidebar>
 </template>
@@ -43,20 +41,16 @@ import UnitCreate from '@/Admin/Unit/UnitCreate.vue'
 import UnitShow from '@/Admin/Unit/UnitShow.vue'
 import UnitEdit from '@/Admin/Unit/UnitEdit.vue'
 
-
-
 const loading = ref(true);
-
 const unit = ref([]);
 async function getData(){
-     loading.value = true;
+    loading.value = true;
     
     const res = await app.getApi('unit')
     if(res.data){
-        unit.value = res.data;
-        
+        unit.value = res.data; 
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function onDelete(id){
@@ -71,9 +65,7 @@ function onDelete(id){
     }
 }
 
-
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

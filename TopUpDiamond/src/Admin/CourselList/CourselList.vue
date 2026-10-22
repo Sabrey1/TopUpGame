@@ -25,13 +25,11 @@
                             <CourselShow :coursel="slotProps.data" />
                             <CourselEdit :coursel="slotProps.data" />
                             <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
-                           
                         </div>
-                        
                     </template>
                 </Column>
             </DataTable>
-    </div>
+            </div>
         </div>
     </sidebar>
 </template>
@@ -41,17 +39,18 @@ import { ref, onMounted } from 'vue';
 import CourselCreate from '@/Admin/CourselList/CourselCreate.vue'
 import CourselShow from '@/Admin/CourselList/CourselShow.vue'
 import CourselEdit from '@/Admin/CourselList/CourselEdit.vue'
-const loading = ref(true);
 
+const loading = ref(true);
 const coursels = ref([]);
+
 async function getData(){
-     loading.value = true;
-    
+
+    loading.value = true;
     const res = await app.getApi('panel_coursel')
     if(res.data){
         coursels.value = res.data;
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function onDelete(id){
@@ -66,10 +65,8 @@ function onDelete(id){
     }
 }
 
-
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>
 

@@ -4,7 +4,6 @@
             <div class="flex justify-content-end">
                 <UserCreate />
             </div>
-            
             <div class="card">
                     <DataTable :value="user" :loading="loading" tableStyle="min-width: 50rem">
                         <Column  header="No" style="width: 80px">
@@ -26,9 +25,7 @@
                                     <UserShow :user="slotProps.data" />
                                     <UserEdit :user="slotProps.data" />
                                     <Button icon="pi pi-times" label="Delete" class="p-button-danger" @click="onDelete(slotProps.data.id)"></Button>
-                                
                                 </div>
-                                
                             </template>
                         </Column>
                     </DataTable>
@@ -40,22 +37,19 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import dayjs from 'dayjs';
-
 import UserCreate from '@/Admin/User/UserCreate.vue'
 import UserShow from '@/Admin/User/UserShow.vue'
 import UserEdit from '@/Admin/User/UserEdit.vue'
 
 const loading = ref(true);
-
 const user = ref([]);
 async function getData(){
-     loading.value = true;
-    
+    loading.value = true;
     const res = await app.getApi('user')
     if(res.data){
         user.value = res.data; 
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function onDelete(id){
@@ -71,7 +65,6 @@ function onDelete(id){
 }
 
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

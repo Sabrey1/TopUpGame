@@ -10,15 +10,6 @@ const currentTime = ref('')
 function updateClock() {
   const now = new Date()
 
-  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-  const weekday =window.t( weekdays[now.getDay()])
-  const day = now.getDate().toString().padStart(2, '0')
-  const month = window.t(months[now.getMonth()])
-  const year = now.getFullYear()
-
   let hours = now.getHours()
   const minutes = now.getMinutes().toString().padStart(2, '0')
   const seconds = now.getSeconds().toString().padStart(2, '0')

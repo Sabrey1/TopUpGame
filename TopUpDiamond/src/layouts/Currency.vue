@@ -6,12 +6,11 @@
 import { computed, defineProps } from 'vue'
 
 const props = defineProps({
-  value: { type: [Number, String], required: true }, // the number to format
-  locale: { type: String, default: 'en-US' },       // optional locale
-  decimal: { type: Number, default: 2 }             // number of decimals
+  value: { type: [Number, String], required: true },
+  locale: { type: String, default: 'en-US' },
+  decimal: { type: Number, default: 2 }
 })
 
-// Always fixed symbol "$"
 const formatted = computed(() => {
   const number = Number(props.value) || 0
   return `$ ${number.toLocaleString(props.locale, {

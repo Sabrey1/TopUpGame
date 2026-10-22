@@ -22,7 +22,7 @@
         </div>
         <div class="col-8">
           <div>
-                <ComToUpInput/>
+            <ComToUpInput/>
           </div>
         </div>
       </div>
@@ -35,26 +35,22 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import ComToUpInput from '@/Home/components/ComToUpInput.vue'
-import axios from 'axios'
 
 const route = useRoute()
-
 const games = ref([])
 
 onMounted(()=>{
-    app.getApi('game')
-      .then(response => {
-        games.value = response.data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  app.getApi('game')
+  .then(response => {
+    games.value = response.data;
+  })
+  .catch(error => {
+    console.error(error);
+  });
 })
 
 const gameId = Number(route.params.id)
-
 const game = computed(() => games.value.find(g => g.id === gameId) || {})
-
 
 function goback(){
   window.history.back();

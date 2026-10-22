@@ -1,7 +1,6 @@
 <template>
   <div>
     <Button icon="pi pi-plus" label="Add" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Add Game" style="width:25rem">
       
       <!-- TITLE -->
@@ -51,17 +50,14 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="AddGame" />
       </div>
-
     </Dialog>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
 
 const visible = ref(false)
-
 const Game = ref({
   name: '',
   slug:'',
@@ -92,7 +88,6 @@ async function AddGame() {
     { headers: { 'Content-Type': 'multipart/form-data' } }
   )
   window.location.reload()
-
   visible.value = false
 }
 </script>

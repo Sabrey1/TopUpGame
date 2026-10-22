@@ -80,10 +80,6 @@
     </div>
 </template>
 
-<script setup>
-
-</script>
-
 <style scoped>
 /* Custom hover effects */
 a:hover i.pi-angle-right {

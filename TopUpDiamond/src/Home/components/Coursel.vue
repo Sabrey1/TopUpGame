@@ -8,7 +8,7 @@
     :modules="modules"
     class="mySwiper"
   >
-    <!-- Dynamic slides from API -->
+  
     <swiper-slide v-for="item in slides" :key="item.id">
       <img :src="item.image" :alt="item.title || 'slide'" />
     </swiper-slide>
@@ -20,7 +20,6 @@ import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';

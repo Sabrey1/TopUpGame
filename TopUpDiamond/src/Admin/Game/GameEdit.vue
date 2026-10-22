@@ -1,8 +1,6 @@
 <template>
   <div>
-    <!-- Edit Button -->
     <Button icon="pi pi-pencil" label="Edit" @click="openDialog" />
-
     <!-- Edit Dialog -->
     <Dialog v-model:visible="visible" modal header="Edit Game" style="width:25rem">
       <!-- Name -->
@@ -64,15 +62,12 @@
         <Button label="Cancel" severity="secondary" @click="visible=false" />
         <Button label="Save" @click="updateGame" />
       </div>
-
     </Dialog>
   </div>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue'
-import axios from 'axios'
-
 const visible = ref(false)
 
 const props = defineProps({
@@ -88,11 +83,10 @@ const Game = ref({
   is_popular: false,
   is_new: false,
   is_active: false,
-  image: null,          // File object
-  imagePreview: null,   // URL for display
+  image: null,
+  imagePreview: null,
 })
 
-// Sync with prop - convert numeric values to booleans
 watch(
   () => props.game,
   (newVal) => {
@@ -115,7 +109,6 @@ function openDialog() {
   visible.value = true
 }
 
-// Handle image selection
 function onSelect(event) {
   const file = event.files[0]
   if (file) {
@@ -124,12 +117,11 @@ function onSelect(event) {
   }
 }
 
-// Update game
 function updateGame() {
   if (!Game.value.id) return
 
   const formData = new FormData()
-  formData.append('_method', 'PUT')  // Spoof PUT for Laravel
+  formData.append('_method', 'PUT')
   formData.append('name', Game.value.name)
   formData.append('slug', Game.value.slug)
   formData.append('description', Game.value.description)

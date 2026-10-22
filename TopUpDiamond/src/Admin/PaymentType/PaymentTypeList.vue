@@ -40,22 +40,20 @@
 <script setup>
 
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import PaymentTypeCreate from '@/Admin/PaymentType/PaymentTypeCreate.vue'
 import PaymentTypeShow from '@/Admin/PaymentType/PaymentTypeShow.vue'
 import PaymentTypeEdit from '@/Admin/PaymentType/PaymentTypeEdit.vue'
 
 const loading = ref(true);
-
 const payment_type = ref([]);
 
 async function getData(){
-     loading.value = true;
+    loading.value = true;
     const res = await app.getApi('payment_type');
     if(res.data){
         payment_type.value = res.data; 
     }
-     loading.value = false;
+    loading.value = false;
 }
 
 function OnDelete(id) {
@@ -68,11 +66,9 @@ function OnDelete(id) {
     if(res.data){
         getData();
     }
-    
 }
 
 onMounted(()=>{
-getData();
-
+    getData();
 })
 </script>

@@ -1,9 +1,6 @@
 <template>
   <div>
-    <!-- Edit Button -->
     <Button icon="pi pi-pencil" label="Edit" @click="openDialog" />
-
-    <!-- Edit Dialog -->
     <Dialog v-model:visible="visible" modal header="Edit Payment Type" style="width:25rem">
 
       <!-- Name -->
@@ -55,12 +52,10 @@ import { ref, watch } from 'vue'
 import axios from 'axios'
 
 const visible = ref(false)
-
 const props = defineProps({
   payment_type: Object
 })
 
-// Local reactive copy for editing
 const PaymentType = ref({
   id: null,
   name: '',
@@ -69,7 +64,6 @@ const PaymentType = ref({
   imagePreview: null,   // URL for display
 })
 
-// Sync with prop
 watch(
   () => props.payment_type,
   (newVal) => {
@@ -102,12 +96,12 @@ function updatePaymentType() {
   if (!PaymentType.value.id) return
 
   const formData = new FormData()
-  formData.append('_method', 'PUT')  // Spoof PUT for Laravel
+  formData.append('_method', 'PUT')
   formData.append('name', PaymentType.value.name)
   formData.append('description', PaymentType.value.description || '')
   if (PaymentType.value.image) formData.append('image', PaymentType.value.image)
 
-  axios.post(`http://localhost:8000/api/payment_type/${PaymentType.value.id}`, formData, {
+  app.postApi(`payment_type/${PaymentType.value.id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }).then((response) => {
     const updated = response.data
@@ -119,7 +113,6 @@ function updatePaymentType() {
     
     visible.value = false
     window.location.reload()
-    
   })
 }
 </script>
