@@ -6,17 +6,17 @@
       <template #content>
 
         <!-- SELECTED INFO -->
-        <div class="flex align-items-center" style="margin-bottom:-15px;">
+        <div class="flex flex-wrap align-items-center gap-2" style="margin-bottom:-15px;">
           <p class="m-0">
             {{ selectedPackage?.amount }} {{ selectedPackage?.Unit }}
           </p>
-          <ul>
+          <ul class="m-0">
             <li>{{ selectedPayment?.name }}</li>
           </ul>
         </div>
 
         <!-- PRICE -->
-        <div class="flex justify-content-between">
+        <div class="flex flex-column md:flex-row md:justify-content-between gap-3">
           <div>
             <p class="m-0">US${{ price }}</p>
             <p class="title m-0">Tax to be added at checkout</p>
@@ -24,7 +24,7 @@
 
           <Button
             label="Buy Now"
-            class="w-20rem border-round"
+            class="w-full md:w-20rem border-round"
             severity="success"
             :disabled="!selectedPackage || !selectedPayment"
             @click="visible = true"
@@ -36,10 +36,10 @@
           v-model:visible="visible"
           modal
           header="Order Details"
-          :style="{ width: '25rem' }"
+          :style="{ width: '25rem', maxWidth: '90vw' }"
           :closable="false"
         >
-          <div class="flex bg-gray-200 p-2 border-round-sm align-items-center gap-4 mb-4">
+          <div class="flex bg-gray-800 p-2 border-round-sm align-items-center gap-4 mb-4">
             <img class="w-3rem" :src="selectedPackage?.image" />
             <p class="m-0 title">
               {{ selectedPackage?.amount }} {{ selectedPackage?.Unit }}
@@ -87,14 +87,14 @@
       v-model:visible="qrVisible"
       modal
       header="Scan QR to Pay"
-      :style="{ width: '25rem' }"
+      :style="{ width: '25rem', maxWidth: '90vw' }"
       :closable="false"
     >
       <div class="text-center">
         <img
           v-if="qrCodeUrl"
           :src="qrCodeUrl"
-          class="w-64 h-64 mx-auto mb-3"
+          class="qr-image mx-auto mb-3"
         />
 
         <p class="text-sm break-all">
@@ -201,3 +201,11 @@ const confirmPayment = async () => {
   }
 }
 </script>
+
+<style scoped>
+.qr-image {
+  width: 16rem;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+}
+</style>

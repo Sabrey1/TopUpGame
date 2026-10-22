@@ -7,7 +7,7 @@
 
       <template #content>
         <!-- Inputs -->
-        <div class="flex gap-3">
+        <div class="flex flex-column sm:flex-row gap-2 sm:gap-3">
           <InputText
             v-model="uid"
             placeholder="Enter User ID"
@@ -23,7 +23,7 @@
         <!-- Button -->
         <Button
           label="Check ID"
-          class="mt-3"
+          class="mt-3 w-full sm:w-auto"
           :loading="loading"
           @click="checkUser"
         />

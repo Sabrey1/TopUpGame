@@ -67,4 +67,35 @@ onMounted(() => {
   object-fit: cover;
   border-radius: 5px;
 }
+
+/* Mobile */
+@media (max-width: 767px) {
+  .swiper {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 220px;
+    border-radius: 12px;
+  }
+
+  .swiper-slide,
+  .swiper-slide img {
+    border-radius: 12px;
+  }
+
+  /* Swipe + dots are enough on a phone */
+  .swiper :deep(.swiper-button-prev),
+  .swiper :deep(.swiper-button-next) {
+    display: none;
+  }
+
+  .swiper :deep(.swiper-pagination) {
+    bottom: 6px;
+  }
+
+  .swiper :deep(.swiper-pagination-bullet) {
+    width: 6px;
+    height: 6px;
+    margin: 0 3px !important;
+  }
+}
 </style>

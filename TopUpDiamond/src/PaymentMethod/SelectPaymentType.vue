@@ -8,7 +8,7 @@
           <div
             v-for="payment in Payments"
             :key="payment.id"
-            class="col-6 md:col-6 lg:col-2 w-12rem"
+            class="col-6 lg:col-2"
           >
             <Card
               class="mt-3 border-1 border-gray-400 w-full selectable"
@@ -70,6 +70,6 @@ onMounted(getData)
 
 .selected {
   border: 2px solid #22c55e !important;
-  background-color: #f0fdf4;
+  background-color: rgba(34, 197, 94, 0.15);
 }
 </style>

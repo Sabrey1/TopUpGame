@@ -19,7 +19,18 @@ body{
 }
 
 .fix-container{
-	max-width: 1400px; width: 100%;  margin: 0 auto;;	
+	max-width: 1400px; width: 100%;  margin: 0 auto;;
+	box-sizing: border-box;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+/* Mobile: a little more breathing room */
+@media (max-width: 767px) {
+	.fix-container {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+	}
 }
 
 a{

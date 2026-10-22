@@ -5,7 +5,7 @@
         <template #content>
             <p class="m-0">Our best sellers for you</p>
                 <div class="grid">
-                    <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
+                    <div v-for="pkg in BestSellers" :key="pkg.id"  class="col-6 lg:col-2" >
                         <Card class="mt-3 border-1 border-gray-400 w-full selectable no-padding-card"
                             :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
@@ -21,11 +21,11 @@
                                 </div>
                             </template>
                             <template #content>
-                                <div class="bg-gray-100 p-2 border-round-bottom-xl">
+                                <div class="bg-gray-800 p-2 border-round-bottom-xl">
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
+                                        <Chip class="bg-green-200 text-green-900 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
                                         <p class="m-0"><s>${{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
@@ -34,8 +34,8 @@
                     </div>
                 </div>
             <p>Browse all items</p>
-            <div class="flex gap-4">
-                <Card>
+            <div class="flex flex-column md:flex-row gap-3 md:gap-4">
+                <Card class="flex-1">
                     <template #content>
                         <div class="flex gap-2 align-items-center">
                             <img src="https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_Mobile Legends_category/1735899441907_5000orMore_MLBB_Diamonds.png" class="w-2rem" alt="">
@@ -43,7 +43,7 @@
                         </div>
                     </template>
                 </Card>
-                <Card>
+                <Card class="flex-1">
                     <template #content>
                         <div class="flex gap-2 align-items-center">
                             <img src="https://cdn1.codashop.com/images/106_5e7a01a7-89b9-4b13-a512-a3e72f63f0d1_f66aebb8ede7c159b2dfc46c2cd00201_category/1741854799644_dcbce7aa-7d85-4e79-ad45-6aed78fcda56.png" class="w-2rem" alt="">
@@ -56,7 +56,7 @@
             <div>
                 <p>Diamonds</p>
                 <div class="grid">
-                    <div v-for="pkg in gamePackages" :key="pkg.id"  class="col-6 md:col-6 lg:col-2 w-12rem" >
+                    <div v-for="pkg in gamePackages" :key="pkg.id"  class="col-6 lg:col-2" >
                         <Card class="mt-3 border-1 border-gray-400 w-full selectable no-padding-card"
                             :class="{ selected: selectedPackageId === pkg.id }" @click="selectPackage(pkg)">
                             <template #title>
@@ -73,11 +73,11 @@
                                 
                             </template>
                             <template #content>
-                                <div class="bg-gray-100 p-2 border-round-bottom-xl">
+                                <div class="bg-gray-800 p-2 border-round-bottom-xl">
                                     <p class="m-0 title text-right">From</p>
                                     <p class="m-0 text-sm text-right">${{ pkg.price }}</p>
                                     <div class="flex gap-2 align-items-center justify-content-end">
-                                        <Chip class="bg-green-200 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
+                                        <Chip class="bg-green-200 text-green-900 text-right title m-0" v-if="pkg.discount">{{pkg.discount}}</Chip>
                                         <p class="m-0"><s>${{ pkg.fullprice }}</s></p>
                                     </div>
                                 </div>
@@ -152,6 +152,6 @@ watch(() => route.params.id, (newId) => {
 
 .selected {
   border: 2px solid #22c55e !important;
-  background-color: #f0fdf4;
+  background-color: rgba(34, 197, 94, 0.15);
 }
 </style>

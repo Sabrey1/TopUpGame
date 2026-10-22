@@ -8,7 +8,7 @@
                     <div class="flex flex-column gap-2">
                         <a href="" class="text-gray-300 no-underline hover:text-primary transition-colors transition-duration-300">
                             <i class="pi pi-angle-right mr-2"></i>
-                            រាយចំណងជើងរបស់អ្នកនៅលើ Codashop
+                            រាយចំណងជើងរបស់អ្នកនៅលើ Sabrey Shop
                         </a>
                         <a href="" class="text-gray-300 no-underline hover:text-primary transition-colors transition-duration-300">
                             <i class="pi pi-angle-right mr-2"></i>
@@ -68,7 +68,7 @@
             <!-- Bottom Section -->
             <div class="grid mt-5 pt-4 border-top-1 border-gray-800">
                 <div class="col-12 md:col-6 mb-3 md:mb-0">
-                    <p class="text-gray-400 text-sm m-0">© 2024 Codashop. All rights reserved.</p>
+                    <p class="text-gray-400 text-sm m-0">© 2026 Sabrey Shop. All rights reserved.</p>
                 </div>
                 <div class="col-12 md:col-6 flex gap-4 justify-content-start md:justify-content-end">
                     <a href="" class="text-gray-400 text-sm no-underline hover:text-white transition-colors transition-duration-300">Privacy Policy</a>
