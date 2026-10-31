@@ -16,8 +16,6 @@ class currencyController extends Controller
         return response()->json($currency);
     }
 
-
-
     /**
      * Store a newly created resource in storage.
      */
@@ -31,15 +29,17 @@ class currencyController extends Controller
             'note' => 'nullable',
         ]);
 
-         $path = $request->file('image')->store('currency', 'public');
 
-
-        $imageUrl = asset('storage/' . $path);
 
         $currency = new Currency;
+
+
         $currency->name = $request->name;
         $currency->symbol = $request->symbol;
-        $currency->image = $imageUrl;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('currency', 'public');
+            $currency->image = asset('storage/' . $path);
+        }
         $currency->presition = $request->presition;
         $currency->note = $request->note;
         $currency->save();

@@ -92,15 +92,17 @@ const user = ref({
 
 async function onLogin() {
   try {
-    const response = await axios.post('http://localhost:8000/api/login', {
+    const response = await app.postApi('login', {
       email: user.value.email,
       password: user.value.password
     })
 
-     
     // Clear form
     user.value.email = ''
     user.value.password = ''
+    localStorage.setItem('token', response.data.token)
+    localStorage.setItem('user', JSON.stringify(response.data.user))
+    
 
     router.push('/admin')
 

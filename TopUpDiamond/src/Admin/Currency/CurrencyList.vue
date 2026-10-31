@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <CurrencyCreate />
@@ -37,7 +36,6 @@
             </DataTable>
         </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>

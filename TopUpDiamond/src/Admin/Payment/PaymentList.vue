@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <Button icon="pi pi-plus" label="Add "></Button>
@@ -39,7 +38,6 @@
             </DataTable>
         </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>

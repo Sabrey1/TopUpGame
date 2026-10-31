@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <UnitCreate />
@@ -31,7 +30,6 @@
             </DataTable>
         </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>
@@ -43,12 +41,14 @@ import UnitEdit from '@/Admin/Unit/UnitEdit.vue'
 
 const loading = ref(true);
 const unit = ref([]);
+
 async function getData(){
     loading.value = true;
-    
     const res = await app.getApi('unit')
+    // const res = await app.getApi('unit')
     if(res.data){
         unit.value = res.data; 
+        console.log("Hello")
     }
     loading.value = false;
 }

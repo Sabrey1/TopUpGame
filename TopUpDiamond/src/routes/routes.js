@@ -19,7 +19,6 @@ import Dashboard from '@/Admin/Dashboard/Dashboard.vue'
 import UnitList from '@/Admin/Unit/UnitList.vue'
 import Setting from '@/Admin/Setting/Setting.vue'
 
-
 const routes = [
   {
     path: "/",
@@ -40,88 +39,107 @@ const routes = [
     path: "/game/:id",
     name: "CardDetail",
     component: CardDetail,
+  },
+  {
+    path:"/admin",
+    component:sidebar,
+    meta:{requiresAuth:true},
+    children: [
+      //admin
+      {
+        path: "",
+        redirect: "/admin/dashboard",
+      }
+      ,{
+        path: "settings",
+        name: "Setting",
+        component: Setting,
+      }
+      ,{
+        path: "coursellist",
+        name: "CourselList",
+        component: CourselList,
+        meta: { title: 'Coursel List' }
+      }
+      ,{
+        path: "game-list",
+        name: "GameList",
+        component: GameList,
+        meta: { title: 'Game List' }
+      }
+      ,{
+        path: "payment-list",
+        name: "PaymentList",
+        component: PaymentList,
+        meta: { title: 'Payment List' }
+      }
+      ,{
+        path: "order-list",
+        name: "OrderList",
+        component: OrderList,
+        meta: { title: 'Order List' }
+      }
+      ,{
+        path: "payment-type-list",
+        name: "PaymentTypeList",
+        component: PaymentTypeList,
+        meta: { title: 'Payment Type List' }
+      }
+      ,{
+        path: "top-up-package-list",
+        name: "TopUpPackageList",
+        component: TopUpPackageList,
+        meta: { title: 'Top Up Package List' }
+      }
+      ,{
+        path: "user-list",
+        name: "UserList",
+        component: UserList,
+        meta: { title: 'User List' }
+      }
+      ,{
+        path: "currency-list",
+        name: "CurrencyList",
+        component: CurrencyList,
+        meta: { title: 'Currency List' }
+      }
+      ,{
+        path: "dashboard",
+        name: "Dashboard",
+        component: Dashboard,
+        meta: { title: 'Dashboard' }
+      }
+      ,{
+        path: "unit-list",
+        name: "UnitList",
+        component: UnitList,
+        meta: { title: 'UnitList' }
+      }
+    ]
   }
-
-
-  //admin
-  ,{
-    path: "/admin",
-    name: "sidebar",
-    component: sidebar,
-  }
-  ,{
-    path: "/admin/settings",
-    name: "Setting",
-    component: Setting,
-  }
-  ,{
-    path: "/admin/coursellist",
-    name: "CourselList",
-    component: CourselList,
-    meta: { title: 'Coursel List' }
-  }
-  ,{
-    path: "/admin/game-list",
-    name: "GameList",
-    component: GameList,
-    meta: { title: 'Game List' }
-  }
-  ,{
-    path: "/admin/payment-list",
-    name: "PaymentList",
-    component: PaymentList,
-    meta: { title: 'Payment List' }
-  }
-  ,{
-    path: "/admin/order-list",
-    name: "OrderList",
-    component: OrderList,
-    meta: { title: 'Order List' }
-  }
-  ,{
-    path: "/admin/payment-type-list",
-    name: "PaymentTypeList",
-    component: PaymentTypeList,
-    meta: { title: 'Payment Type List' }
-  }
-  ,{
-    path: "/admin/top-up-package-list",
-    name: "TopUpPackageList",
-    component: TopUpPackageList,
-    meta: { title: 'Top Up Package List' }
-  }
-  ,{
-    path: "/admin/user-list",
-    name: "UserList",
-    component: UserList,
-    meta: { title: 'User List' }
-  }
-  ,{
-    path: "/admin/currency-list",
-    name: "CurrencyList",
-    component: CurrencyList,
-    meta: { title: 'Currency List' }
-  }
-  ,{
-    path: "/admin/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
-    meta: { title: 'Dashboard' }
-  }
-  ,{
-    path: "/admin/unit-list",
-    name: "UnitList",
-    component: UnitList,
-    meta: { title: 'UnitList' }
-  }
-  
-  
-  
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+router.beforeEach((to) => {
+  const token = localStorage.getItem("token");
+
+  const requiresAuth = to.matched.some(
+    (record) => record.meta.requiresAuth
+  );
+
+  if (requiresAuth && !token) {
+    return "/login";
+  }
+
+  if ((to.path === "/login" || to.path === "/register") && token) {
+    return "/admin/dashboard";
+  }
+
+  return true;
+});
 
 export default router

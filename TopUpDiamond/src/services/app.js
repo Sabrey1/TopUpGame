@@ -2,12 +2,25 @@ import axios from "axios";
 
 // ✅ Create axios instance
 const api = axios.create({
-  baseURL: "https://laravel.sabrey.xyz/api/", // your API base
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
+
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // ✅ Global app object
 const app = {

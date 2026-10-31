@@ -14,5 +14,13 @@
   "Logout":"Logout",
   "Top Up Package":"Top Up Package",
   "Settings":"Settings",
-  "Thursday":"Thursday"
+  "Thursday":"Thursday",
+  "UnitList":"UnitList",
+  "Currency List":"Currency List",
+  "Payment List":"Payment List",
+  "PaymentType List":"PaymentType List",
+  "Coursel List":"Coursel List",
+  "Game List":"Game List",
+  "Top Up Package List":"Top Up Package List",
+  "Unit List":"Unit List"
 }

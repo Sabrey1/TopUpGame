@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <CourselCreate />
@@ -31,7 +30,6 @@
             </DataTable>
             </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>

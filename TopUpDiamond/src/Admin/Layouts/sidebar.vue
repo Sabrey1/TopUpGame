@@ -127,7 +127,7 @@
         </div>
       </div>
       <div class="p-3">
-        <slot></slot>
+        <router-view />
       </div>
     </div>
   </div>
@@ -135,14 +135,19 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute,useRouter  } from 'vue-router'
+
 import Button from 'primevue/button'
 import TimeRun from "@/Admin/Layouts/TimeRun.vue"
- 
+
+const router = useRouter()
 const route = useRoute()
+
 const t = window.t
 const visible = ref(true)
+
 const showSidebar = computed(() => !route.meta.hideSidebar)
+
 const pageTitle = computed(() => route.meta.title ? t(route.meta.title) : '')
 
 const toggle = () => {
@@ -150,12 +155,10 @@ const toggle = () => {
 }
 
 const handleLogout = (event) => {
-  // Prevent default RouterLink navigation so we can handle it manually
   event.preventDefault();
-
-  // Clear saved credentials
-  localStorage.removeItem('user_info');
-  localStorage.removeItem('auth_token');
+ 
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
 
   router.push('/login');
 };

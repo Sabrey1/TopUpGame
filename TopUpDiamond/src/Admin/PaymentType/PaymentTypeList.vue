@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <PaymentTypeCreate />
@@ -34,7 +33,6 @@
                 </DataTable>
             </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>

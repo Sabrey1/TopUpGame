@@ -1,5 +1,4 @@
 <template>
-    <sidebar>
         <div>
             <div class="flex justify-content-end">
                 <GameCreate />
@@ -39,7 +38,6 @@
                 </DataTable>
             </div>
         </div>
-    </sidebar>
 </template>
 
 <script setup>
