@@ -12,6 +12,8 @@ class AuthController extends Controller
 {
 
     public function index(){
+
+        // return $request->user();
         $users = User::all();
         return response()->json($users);
     }

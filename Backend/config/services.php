@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'bakong' => [
+        'token' => env('BAKONG_TOKEN'),
+        'account_id' => env('BAKONG_ACCOUNT_ID', 'sabrey_lim@bkrt'),
+    ],
 
     /*
     |--------------------------------------------------------------------------

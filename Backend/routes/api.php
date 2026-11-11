@@ -12,7 +12,7 @@ use App\Http\Controllers\currencyController;
 use App\Http\Controllers\unitController;
 use App\Http\Controllers\AuthController;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum' , 'admin'])->group(function () {
 
     Route::get('/profile', function (Request $request) {return $request->user();});
 
@@ -50,6 +50,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/verify', [PaymentsController::class, 'verifyTransaction'])->name('payments.verify');
     Route::post('/payment', [PaymentsController::class, 'storePayment'])->name('payments.store');
 
+    // order
+    Route::get('/order',[OrdersController::class,'index'])->name('order.index');
+
 });
 
 //Auth
@@ -71,9 +74,6 @@ Route::get('/game/{id}',[GamesController::class,'show'])->name('game.show');
 // topup Package
 Route::get('/topupPackage', [TopUpPackageController::class, 'index'])->name('topupPackage.index');
 Route::get('/topupPackage/{id}', [TopUpPackageController::class, 'show'])->name('topupPackage.show');
-
-// order
-Route::get('/order',[OrdersController::class,'index'])->name('order.index');
 
 // payment
 Route::get('/payments', [PaymentsController::class, 'index'])->name('payments.index');

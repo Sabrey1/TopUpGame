@@ -1,5 +1,5 @@
 <template >
-    <div class="fixed top-0 left-0 right-0" style="z-index: 9999;">
+    <div class="fixed top-0 left-0 right-0" style="z-index: 100;">
         <div class="card ">
         <Toolbar>
             <template #start>

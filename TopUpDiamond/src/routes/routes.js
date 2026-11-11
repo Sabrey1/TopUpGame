@@ -2,22 +2,21 @@ import { createRouter, createWebHistory } from "vue-router"
 
 // pages
 import Home from "@/Home/Home.vue"
-import CardDetail from '@/Home/components/CardDetail.vue'
-
-import CourselList from '@/Admin/CourselList/CourselList.vue'
-import sidebar from '@/Admin/Layouts/sidebar.vue'
-import GameList from '@/Admin/Game/GameList.vue'
-import OrderList from '@/Admin/Order/OrderList.vue'
-import PaymentList from '@/Admin/Payment/PaymentList.vue'
-import PaymentTypeList from '@/Admin/PaymentType/PaymentTypeList.vue'
-import TopUpPackageList from '@/Admin/TopUpPackage/TopUpPackageList.vue'
-import UserList from '@/Admin/User/UserList.vue'
-import Login from '@/Auth/Login.vue'
-import Register from '@/Auth/Register.vue'
-import CurrencyList from '@/Admin/Currency/CurrencyList.vue'
-import Dashboard from '@/Admin/Dashboard/Dashboard.vue'
-import UnitList from '@/Admin/Unit/UnitList.vue'
-import Setting from '@/Admin/Setting/Setting.vue'
+const CardDetail = () => import('@/Home/components/CardDetail.vue')
+const CourselList = () => import('@/Admin/CourselList/CourselList.vue')
+const sidebar = () => import('@/Admin/Layouts/sidebar.vue')
+const GameList = () => import('@/Admin/Game/GameList.vue')
+const OrderList = () => import('@/Admin/Order/OrderList.vue')
+const PaymentList = () => import('@/Admin/Payment/PaymentList.vue')
+const PaymentTypeList = () => import('@/Admin/PaymentType/PaymentTypeList.vue')
+const TopUpPackageList = () => import('@/Admin/TopUpPackage/TopUpPackageList.vue')
+const UserList = () => import('@/Admin/User/UserList.vue')
+const Login = () => import('@/Auth/Login.vue')
+const Register = () => import('@/Auth/Register.vue')
+const CurrencyList = () => import('@/Admin/Currency/CurrencyList.vue')
+const Dashboard = () => import('@/Admin/Dashboard/Dashboard.vue')
+const UnitList = () => import('@/Admin/Unit/UnitList.vue')
+const Setting = () => import('@/Admin/Setting/Setting.vue')
 
 const routes = [
   {

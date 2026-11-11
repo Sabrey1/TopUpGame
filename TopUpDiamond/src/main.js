@@ -20,7 +20,6 @@ import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import FileUpload from 'primevue/fileupload';
 import Dialog from 'primevue/dialog';
-import sidebar from '@/Admin/Layouts/sidebar.vue'
 import dayjs from 'dayjs'
 import Currency from '@/layouts/Currency.vue'
 import DataTable from 'primevue/datatable';
@@ -40,7 +39,6 @@ app.use(PrimeVue, {
 app.use(ToastService);
 app.component('Header', Header);
 app.component('Footer', Footer);
-app.component('sidebar', sidebar);
 app.component('Currency', Currency);
 app.component('Chip', Chip);
 app.component('Card', Card);

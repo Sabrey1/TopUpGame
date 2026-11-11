@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
@@ -25,21 +24,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import '@/style.css';
 
-const slides = ref([]);
-const modules = [Autoplay, Pagination, Navigation];
-
-async function getSlides() {
-  try {
-    const res = await app.getApi('panel_coursel');
-    if (res.data) slides.value = res.data;
-  } catch (error) {
-    console.error('Error fetching slides:', error);
-  }
-}
-
-onMounted(() => {
-  getSlides();
+defineProps({
+  slides: { type: Array, default: () => [] }
 });
+const modules = [Autoplay, Pagination, Navigation];
 </script>
 
 <style scoped>

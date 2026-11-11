@@ -36,31 +36,30 @@ class TopUpPackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'game_id' => 'required',
-            'name' => 'required',
-            'amount' => 'required',
-            'fullprice' => 'required',
-            'currency_id' => 'required',
-            'unit_id' => 'required',
+            'game_id' => 'required|exists:games,id',
+            'name' => 'required|string|max:255',
+            'amount' => 'required|integer|min:0',
+            'fullprice' => 'required|numeric|min:0',
+            'currency_id' => 'required|exists:currencies,id',
+            'unit_id' => 'required|exists:units,id',
+            'image' => 'nullable|image|max:1000',
 
         ]);
-
-         $path = $request->file('image')->store('topUpPackage', 'public');
-
-        // Generate public URL
-        $imageUrl = asset('storage/' . $path);
-
 
         $topUp = new TopUpPackage();
         $topUp->game_id = $request->game_id;
         $topUp->name = $request->name;
         $topUp->amount = $request->amount;
-        $topUp->image = $imageUrl;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('topUpPackage', 'public');
+            $topUp->image = asset('storage/' . $path);
+        }
         $topUp->fullprice = $request->fullprice;
         $topUp->currency_id = $request->currency_id;
         $topUp->unit_id = $request->unit_id;
         $topUp->description = $request->description;
         $topUp->discount = $request->discount;
+
         $topUp->best_seller = $request->best_seller ?? 0;
         $topUp->save();
 

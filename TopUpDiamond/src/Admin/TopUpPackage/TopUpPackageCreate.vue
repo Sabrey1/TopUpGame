@@ -68,7 +68,7 @@
       </div>
        
       <div class="flex items-center gap-2">
-        <Checkbox v-model="TopUpPackage.best_seller" inputId="ingredient2" name="best_seller" value="best_seller"/>
+        <Checkbox v-model="TopUpPackage.best_seller" inputId="ingredient2" name="best_seller" :binary="true"/>
         <label for="ingredient2">Is Best Seller</label>
       </div>
 
@@ -83,6 +83,7 @@
         <InputText v-model="TopUpPackage.description" class="flex-auto" />
       </div>
 
+      <p v-if="saveError" role="alert" class="text-red-500">{{ saveError }}</p>
       <!-- ACTIONS -->
       <div class="flex justify-end gap-2">
         <Button label="Cancel" severity="secondary" @click="visible=false" />
@@ -96,6 +97,7 @@
 import { ref,onMounted ,computed} from 'vue'
 
 const visible = ref(false)
+const saveError = ref('')
 const TopUpPackage = ref({
   game_id: null,
   name: '',
@@ -129,25 +131,26 @@ function onSelect(e) {
 }
 
 async function AddTopUpPackage() {
+  saveError.value = ''
   const formData = new FormData()
   formData.append('game_id', TopUpPackage.value.game_id)
   formData.append('name', TopUpPackage.value.name)
   formData.append('fullprice', TopUpPackage.value.fullprice)
-  formData.append('currency_id', TopUpPackage.value.currency)
+  formData.append('currency_id', TopUpPackage.value.currency_id ?? '')
   formData.append('amount', TopUpPackage.value.amount)
   formData.append('unit_id', TopUpPackage.value.unit_id)
   formData.append('best_seller', TopUpPackage.value.best_seller ? 1 : 0)
   formData.append('discount', TopUpPackage.value.discount)
   formData.append('description', TopUpPackage.value.description)
-  formData.append('image', TopUpPackage.value.image)
+  if (TopUpPackage.value.image) formData.append('image', TopUpPackage.value.image)
 
-  await app.postApi(
-    'topupPackage',
-    formData,
-    { headers: { 'Content-Type': 'multipart/form-data' } }
-  )
-  window.location.reload()
-  visible.value = false
+  try {
+    await app.postApi('topupPackage', formData)
+    visible.value = false
+    window.location.reload()
+  } catch (error) {
+    saveError.value = error.response?.data?.message || 'Could not save the package. Please try again.'
+  }
 }
 
 onMounted(() => {

@@ -91,14 +91,15 @@ class gamesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Games $games, $id)
+    public function destroy($id)
     {
         $game = Games::find($id);
+        if (!$game) {
+            return response()->json(['message' => 'Game not found'], 404);
+        }
         $game->delete();
-        return response()->json([
-            'game' => $game,
-            'message' => 'Game deleted successfully',
-        ]);
+
+        return response()->json(['message' => 'Deleted']);
     }
 
    public function checkUser(Request $request)
